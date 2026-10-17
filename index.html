@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HAP Daily POS & Billing Software | Hatsun Agro Product</title>
+  <meta name="description" content="Next-Gen Retail POS & Billing Software for HAP Daily outlets. Fast billing, barcode scanning, UPI QR, thermal receipts, inventory management, and day-end reports.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="pos-theme-light">
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="brand-logo-badge">
+        <div class="logo-circle">
+          <span class="hap-logo-text">HAP</span>
+        </div>
+        <div class="brand-meta">
+          <div class="brand-title-row">
+            <span class="brand-title">HAP <span class="accent-text">daily</span></span>
+            <span class="pos-badge">PRO POS</span>
+          </div>
+          <span class="store-tag">Franchise #2408 • Anna Nagar, Chennai</span>
+        </div>
+      </div>
+
+      <nav class="nav-tabs" id="mainNav">
+        <button class="nav-btn active" data-view="billingView" id="navBilling">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span>Billing POS</span>
+          <kbd class="shortcut-key">F1</kbd>
+        </button>
+        <button class="nav-btn" data-view="inventoryView" id="navInventory">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          <span>Inventory</span>
+          <span class="badge-count" id="inventoryCountBadge">215</span>
+          <kbd class="shortcut-key">F3</kbd>
+        </button>
+        <button class="nav-btn" data-view="reportsView" id="navReports">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span>Day Close & Reports</span>
+          <kbd class="shortcut-key">F6</kbd>
+        </button>
+        <button class="nav-btn" data-view="ordersView" id="navOrders">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <span>Invoices</span>
+          <kbd class="shortcut-key">F7</kbd>
+        </button>
+      </nav>
+    </div>
+
+    <div class="header-right">
+      <div class="quick-kpi-pill">
+        <span class="kpi-label">Today:</span>
+        <span class="kpi-val" id="headerTodaySales">₹0.00</span>
+        <span class="kpi-count" id="headerOrderCount">(0 bills)</span>
+      </div>
+
+      <div class="system-status">
+        <span class="status-dot"></span>
+        <span class="status-text">ONLINE</span>
+      </div>
+
+      <div class="live-clock" id="liveClock">--:--:--</div>
+
+      <div class="cashier-chip">
+        <div class="cashier-avatar">JM</div>
+        <div class="cashier-info">
+          <span class="cashier-name" id="headerCashierName">Jeeva M.</span>
+          <span class="cashier-role">Register #01</span>
+        </div>
+      </div>
+
+      <button class="icon-btn mobile-cart-btn" id="mobileHeaderCartBtn" title="View Cart">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="mobile-cart-badge" id="mobileHeaderCartBadge">0</span>
+      </button>
+
+      <button class="icon-btn" id="themeToggleBtn" title="Toggle Dark/Light Mode">
+        <svg class="icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+
+      <button class="icon-btn" id="settingsBtn" title="Outlet Settings">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Views Container -->
+  <main class="main-content">
+    
+    <!-- 1. BILLING POS VIEW -->
+    <div class="view-panel active" id="billingView">
+      
+      <!-- Mobile POS Segment Controller (Visible on <= 1024px) -->
+      <div class="pos-mobile-toggle-bar" id="posMobileToggleBar">
+        <button class="pos-mobile-toggle-btn active" id="mobileTabCatalogBtn" data-target="catalog">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span>Catalog (<span id="mobileCatalogCountBadge">215</span>)</span>
+        </button>
+        <button class="pos-mobile-toggle-btn" id="mobileTabCartBtn" data-target="cart">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span>Cart (<span id="mobileCartCountBadge">0</span>) • <strong id="mobileCartTotalBadge">₹0</strong></span>
+        </button>
+      </div>
+
+      <div class="pos-layout" id="posLayout">
+        
+        <!-- Left: Product Catalog & Fast Filters -->
+        <section class="catalog-section">
+          
+          <!-- Fast Barcode & Search Header -->
+          <div class="catalog-search-row">
+            <div class="barcode-input-wrapper">
+              <svg class="barcode-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5v14M7 5v14M11 5v14M15 5v14M19 5v14M21 5v14"/></svg>
+              <input type="text" id="barcodeInput" placeholder="Scan Barcode or Item Code (e.g. 890123400001)..." autocomplete="off">
+              <button class="barcode-enter-btn" id="barcodeEnterBtn" title="Add item">Add</button>
+            </div>
+
+            <div class="search-input-wrapper">
+              <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="searchInput" placeholder="Search milk, curd, arun cone, cassatta, paneer..." autocomplete="off">
+              <button class="clear-search-btn" id="clearSearchBtn" title="Clear">✕</button>
+            </div>
+
+            <div class="quick-scanner-simulator">
+              <label for="demoScanSelect" class="sim-label">⚡ Fast Demo Scan:</label>
+              <select id="demoScanSelect">
+                <option value="">-- Quick Scan Item --</option>
+                <!-- Populated via JS -->
+              </select>
+            </div>
+          </div>
+
+          <!-- Brand Filter Tabs -->
+          <div class="brand-tabs-scroller" id="brandTabsContainer">
+            <!-- Brand buttons populated via JS -->
+          </div>
+
+          <!-- Subcategory Filter Pills -->
+          <div class="category-pills-scroller" id="categoryPillsContainer">
+            <!-- Category pills populated via JS -->
+          </div>
+
+          <!-- Products Grid -->
+          <div class="catalog-grid-header">
+            <span class="results-count" id="catalogResultsCount">Showing 215 items</span>
+            <div class="catalog-view-options">
+              <label class="stock-filter-toggle">
+                <input type="checkbox" id="hideOutOfStockCheckbox">
+                <span>In Stock Only</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="catalog-grid" id="catalogGrid">
+            <!-- Product cards injected via JS -->
+          </div>
+
+          <!-- Mobile Floating Cart Pill (Shows on mobile when cart has items) -->
+          <div class="mobile-floating-cart-pill" id="mobileFloatingCartPill" style="display: none;">
+            <div class="pill-info">
+              <span class="pill-badge" id="floatingPillCount">0 items</span>
+              <span class="pill-total" id="floatingPillTotal">₹0.00</span>
+            </div>
+            <button class="pill-action-btn" id="floatingPillActionBtn">
+              <span>VIEW CART & PAY</span>
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </section>
+
+        <!-- Right: Active Bill & Cart Register -->
+        <aside class="cart-register-section" id="cartRegisterSection">
+          
+          <!-- Mobile Cart Back Row -->
+          <div class="cart-mobile-back-row" id="cartMobileBackRow">
+            <button class="btn btn-secondary btn-sm" id="cartMobileBackBtn">
+              ← Add More Items
+            </button>
+            <span class="mobile-cart-summary-text" id="cartMobileSummaryText">0 items • ₹0.00</span>
+          </div>
+
+          <!-- Multi-Tab Hold/Recall Header -->
+          <div class="bill-tabs-bar" id="billTabsBar">
+            <button class="bill-tab active" data-tab-id="1">
+              <span class="tab-title">Bill #1</span>
+              <span class="tab-items-badge" id="tabItemsBadge1">0</span>
+            </button>
+            <button class="bill-tab" data-tab-id="2">
+              <span class="tab-title">Bill #2</span>
+              <span class="tab-items-badge" id="tabItemsBadge2">0</span>
+            </button>
+            <button class="new-bill-tab-btn" id="newBillTabBtn" title="Open New Hold Bill Tab">+ Tab</button>
+          </div>
+
+          <!-- Customer Loyalty Info -->
+          <div class="customer-strip">
+            <div class="customer-input-group">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <input type="tel" id="customerPhone" placeholder="Customer Mobile (Optional)" maxlength="10">
+            </div>
+            <div class="customer-input-group">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <input type="text" id="customerName" placeholder="Customer Name">
+            </div>
+            <div class="loyalty-pill" id="customerLoyaltyPill" style="display: none;">
+              <span>⭐ 35 Pts</span>
+            </div>
+          </div>
+
+          <!-- Cart Items Container -->
+          <div class="cart-items-container" id="cartItemsContainer">
+            <div class="cart-empty-state" id="cartEmptyState">
+              <div class="empty-icon-wrap">
+                <svg class="empty-cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+              </div>
+              <p class="empty-title">Cart is empty</p>
+              <p class="empty-hint">Scan a barcode or click any product to begin billing</p>
+            </div>
+            <table class="cart-table" id="cartTable" style="display: none;">
+              <thead>
+                <tr>
+                  <th class="col-item">Item</th>
+                  <th class="col-price">Price</th>
+                  <th class="col-qty">Qty</th>
+                  <th class="col-tax">GST</th>
+                  <th class="col-total">Total</th>
+                  <th class="col-action"></th>
+                </tr>
+              </thead>
+              <tbody id="cartTableBody">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Cart Calculations & Breakdown -->
+          <div class="cart-totals-card">
+            <div class="totals-row">
+              <span>Taxable Amount</span>
+              <span id="taxableAmount">₹0.00</span>
+            </div>
+            <div class="totals-row tax-breakdown-row">
+              <span class="tax-label">GST (CGST + SGST)</span>
+              <span id="gstAmount">₹0.00</span>
+            </div>
+            <div class="totals-row discount-row">
+              <div class="discount-label-wrap">
+                <span>Discount</span>
+                <button class="discount-quick-btn" id="discountBtn" title="Apply Discount">Apply %</button>
+              </div>
+              <span id="discountAmount">- ₹0.00</span>
+            </div>
+            <div class="totals-row roundoff-row">
+              <span>Round Off</span>
+              <span id="roundOffAmount">₹0.00</span>
+            </div>
+            <div class="grand-total-row">
+              <span class="grand-title">GRAND TOTAL</span>
+              <span class="grand-amount" id="grandTotal">₹0.00</span>
+            </div>
+          </div>
+
+          <!-- Fast Cash Tender Shortcuts -->
+          <div class="cash-tender-bar">
+            <div class="tender-input-wrap">
+              <span class="rupee-symbol">₹</span>
+              <input type="number" id="cashTenderedInput" placeholder="Cash Received" min="0" step="1">
+            </div>
+            <div class="change-display" id="changeDisplayWrap">
+              <span class="change-label">Change Due:</span>
+              <span class="change-amount" id="changeDueAmount">₹0.00</span>
+            </div>
+          </div>
+
+          <div class="quick-cash-chips" id="quickCashChips">
+            <button class="cash-chip" data-amt="exact">Exact</button>
+            <button class="cash-chip" data-amt="50">₹50</button>
+            <button class="cash-chip" data-amt="100">₹100</button>
+            <button class="cash-chip" data-amt="200">₹200</button>
+            <button class="cash-chip" data-amt="500">₹500</button>
+          </div>
+
+          <!-- Payment Mode Triggers -->
+          <div class="payment-methods-grid">
+            <button class="pay-method-btn active" data-method="CASH" id="payMethodCash">
+              <svg class="pay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
+              <span>Cash</span>
+              <kbd class="shortcut-key">F4</kbd>
+            </button>
+            <button class="pay-method-btn" data-method="UPI" id="payMethodUpi">
+              <svg class="pay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              <span>UPI / QR</span>
+              <kbd class="shortcut-key">F5</kbd>
+            </button>
+            <button class="pay-method-btn" data-method="CARD" id="payMethodCard">
+              <svg class="pay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              <span>Card</span>
+            </button>
+          </div>
+
+          <!-- Bottom Action Buttons -->
+          <div class="cart-bottom-actions">
+            <button class="action-btn hold-btn" id="holdBillBtn" title="Hold this bill for later">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              <span>Hold (F8)</span>
+            </button>
+            <button class="action-btn clear-btn" id="clearCartBtn" title="Discard current cart">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+              <span>Clear</span>
+            </button>
+            <button class="action-btn charge-btn" id="checkoutBtn">
+              <svg class="charge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <div class="charge-btn-text">
+                <span class="charge-label-text">CHARGE & PRINT</span>
+                <span class="charge-sub-total" id="chargeBtnAmount">₹0.00</span>
+              </div>
+            </button>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+
+    <!-- 2. INVENTORY & STOCK VIEW -->
+    <div class="view-panel" id="inventoryView">
+      <div class="view-inner-container">
+        
+        <div class="view-header-bar">
+          <div>
+            <h1 class="view-title">HAP Inventory & Stock Management</h1>
+            <p class="view-subtitle">Live real-time stock levels for all official Hatsun, Arun, Arokya & HAP items</p>
+          </div>
+          <div class="view-header-actions">
+            <button class="btn btn-primary" id="openAddProductModalBtn">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Add Custom Product</span>
+            </button>
+            <button class="btn btn-secondary" id="exportInventoryBtn">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Export CSV</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Inventory KPI Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-card-title">Total Active SKUs</span>
+            <span class="kpi-card-num" id="invTotalSkus">215</span>
+            <span class="kpi-card-desc">Official HAP items</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card-title">Total Stock Units</span>
+            <span class="kpi-card-num" id="invTotalUnits">0</span>
+            <span class="kpi-card-desc">Units across all chillers</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card-title">Inventory Retail Value</span>
+            <span class="kpi-card-num" id="invTotalRetailVal">₹0</span>
+            <span class="kpi-card-desc">At current MRP</span>
+          </div>
+          <div class="kpi-card warning-card">
+            <span class="kpi-card-title">Low Stock SKUs (&lt; 15)</span>
+            <span class="kpi-card-num warning-num" id="invLowStockSkus">0</span>
+            <span class="kpi-card-desc">Require immediate dairy refill</span>
+          </div>
+        </div>
+
+        <!-- Inventory Table Controls -->
+        <div class="inventory-controls-row">
+          <div class="search-input-wrapper flex-1">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="inventorySearchInput" placeholder="Filter inventory by name, barcode, or category...">
+          </div>
+          <div class="select-wrapper">
+            <select id="inventoryBrandFilter">
+              <option value="ALL">All Brands</option>
+              <option value="Arokya">Arokya</option>
+              <option value="Arun Icecreams">Arun Icecreams</option>
+              <option value="Hatsun">Hatsun</option>
+              <option value="HAP Cake">HAP Cake</option>
+              <option value="Hanobar">Hanobar</option>
+              <option value="Dako">Dako</option>
+              <option value="Aniva">Aniva</option>
+            </select>
+          </div>
+          <div class="select-wrapper">
+            <select id="inventoryStockStatusFilter">
+              <option value="ALL">All Stock Levels</option>
+              <option value="LOW">Low Stock Only (&lt; 15)</option>
+              <option value="OUT">Out of Stock (0)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Inventory Table -->
+        <div class="table-container">
+          <table class="data-table" id="inventoryTable">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Item Code / Barcode</th>
+                <th>Product Name</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>Unit</th>
+                <th>MRP (₹)</th>
+                <th>GST Rate</th>
+                <th>Stock</th>
+                <th>Status</th>
+                <th>Quick Restock</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryTableBody">
+              <!-- Populated via JS -->
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 3. DAY CLOSE & SALES REPORTS VIEW -->
+    <div class="view-panel" id="reportsView">
+      <div class="view-inner-container">
+        
+        <div class="view-header-bar">
+          <div>
+            <h1 class="view-title">Day-End Z-Report & Sales Analytics</h1>
+            <p class="view-subtitle">Today's register audit, payment breakdowns, GST analysis, and register closure</p>
+          </div>
+          <div class="view-header-actions">
+            <button class="btn btn-primary" id="printZReportBtn">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              <span>Print Day-End Z-Report</span>
+            </button>
+            <button class="btn btn-secondary" id="exportDailyReportBtn">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Export Sales Summary</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Today KPIs -->
+        <div class="kpi-grid">
+          <div class="kpi-card accent-card">
+            <span class="kpi-card-title">Today's Gross Sales</span>
+            <span class="kpi-card-num" id="repGrossSales">₹0.00</span>
+            <span class="kpi-card-desc" id="repOrderCountDesc">0 Invoices closed</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card-title">Average Bill Value</span>
+            <span class="kpi-card-num" id="repAvgBill">₹0.00</span>
+            <span class="kpi-card-desc">Per customer order</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card-title">Total GST Collected</span>
+            <span class="kpi-card-num" id="repTotalGst">₹0.00</span>
+            <span class="kpi-card-desc">CGST + SGST combined</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-card-title">Items Sold Today</span>
+            <span class="kpi-card-num" id="repItemsSold">0</span>
+            <span class="kpi-card-desc">Units passed through register</span>
+          </div>
+        </div>
+
+        <!-- Reports Grid: Breakdown Cards -->
+        <div class="reports-breakdown-grid">
+          
+          <!-- Payment Method Split -->
+          <div class="report-box">
+            <h3 class="box-title">Payment Mode Breakdown</h3>
+            <div class="payment-split-list" id="paymentSplitList">
+              <div class="split-item">
+                <div class="split-info">
+                  <span class="split-name">Cash In Drawer</span>
+                  <span class="split-amount" id="repCashAmount">₹0.00</span>
+                </div>
+                <div class="split-progress"><div class="progress-bar cash-bar" id="repCashBar" style="width: 0%"></div></div>
+              </div>
+              <div class="split-item">
+                <div class="split-info">
+                  <span class="split-name">UPI / QR Collections</span>
+                  <span class="split-amount" id="repUpiAmount">₹0.00</span>
+                </div>
+                <div class="split-progress"><div class="progress-bar upi-bar" id="repUpiBar" style="width: 0%"></div></div>
+              </div>
+              <div class="split-item">
+                <div class="split-info">
+                  <span class="split-name">Debit / Credit Card</span>
+                  <span class="split-amount" id="repCardAmount">₹0.00</span>
+                </div>
+                <div class="split-progress"><div class="progress-bar card-bar" id="repCardBar" style="width: 0%"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Brand Share Breakdown -->
+          <div class="report-box">
+            <h3 class="box-title">Brand Sales Share</h3>
+            <div class="brand-share-list" id="brandShareList">
+              <!-- Populated via JS -->
+            </div>
+          </div>
+
+          <!-- Top Selling Products -->
+          <div class="report-box full-width-box">
+            <h3 class="box-title">Today's Top 10 Best Sellers</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Product</th>
+                  <th>Brand</th>
+                  <th>Price</th>
+                  <th>Qty Sold</th>
+                  <th>Total Revenue</th>
+                </tr>
+              </thead>
+              <tbody id="topSellingTableBody">
+                <!-- Populated via JS -->
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 4. ORDERS & INVOICES HISTORY VIEW -->
+    <div class="view-panel" id="ordersView">
+      <div class="view-inner-container">
+        
+        <div class="view-header-bar">
+          <div>
+            <h1 class="view-title">Order History & Tax Invoices</h1>
+            <p class="view-subtitle">Archived bills, customer receipts, reprint requests, and returns</p>
+          </div>
+          <div class="view-header-actions">
+            <button class="btn btn-secondary" id="exportOrdersBtn">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Export Invoices CSV</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="inventory-controls-row">
+          <div class="search-input-wrapper flex-1">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="orderSearchInput" placeholder="Search by Bill # (e.g. HAP-1001) or customer phone...">
+          </div>
+          <div class="select-wrapper">
+            <select id="orderPaymentFilter">
+              <option value="ALL">All Payments</option>
+              <option value="CASH">Cash Only</option>
+              <option value="UPI">UPI Only</option>
+              <option value="CARD">Card Only</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Orders Table -->
+        <div class="table-container">
+          <table class="data-table" id="ordersTable">
+            <thead>
+              <tr>
+                <th>Invoice #</th>
+                <th>Time & Date</th>
+                <th>Customer</th>
+                <th>Items Count</th>
+                <th>Payment Mode</th>
+                <th>GST</th>
+                <th>Grand Total (₹)</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <!-- Populated via JS -->
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+  </main>
+
+  <!-- Mobile Bottom Navigation Bar (Visible on Mobile <= 1024px) -->
+  <nav class="mobile-bottom-nav" id="mobileBottomNav">
+    <button class="mobile-nav-btn active" data-view="billingView" id="mobNavBilling">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span>Billing</span>
+    </button>
+    <button class="mobile-nav-btn" data-view="inventoryView" id="mobNavInventory">
+      <div class="mob-icon-wrap">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <span class="mob-badge" id="mobInvCount">215</span>
+      </div>
+      <span>Stock</span>
+    </button>
+    <button class="mobile-nav-btn" data-view="reportsView" id="mobNavReports">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      <span>Reports</span>
+    </button>
+    <button class="mobile-nav-btn" data-view="ordersView" id="mobNavOrders">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
+      <span>Invoices</span>
+    </button>
+  </nav>
+
+  <!-- ================= MODALS ================= -->
+
+  <!-- 1. THERMAL RECEIPT MODAL (80mm / 58mm POS Printer Format) -->
+  <div class="modal-backdrop" id="receiptModal">
+    <div class="modal-window receipt-modal-window">
+      <div class="modal-header">
+        <h3 class="modal-title">Customer Tax Invoice / Receipt</h3>
+        <button class="modal-close-btn" id="closeReceiptModalBtn">✕</button>
+      </div>
+
+      <div class="receipt-preview-container">
+        <!-- Printable Receipt Sheet -->
+        <div class="thermal-receipt" id="thermalReceiptContent">
+          <div class="receipt-header">
+            <h2 class="receipt-store-title" id="receiptStoreName">HAP DAILY</h2>
+            <p class="receipt-sub">Hatsun Agro Product Ltd.</p>
+            <p class="receipt-info-line" id="receiptStoreBranch">Franchise Outlet #2408</p>
+            <p class="receipt-info-line" id="receiptStoreAddress">12, 2nd Avenue, Anna Nagar, Chennai - 600040</p>
+            <p class="receipt-info-line">GSTIN: <span id="receiptGstin">33AAACH1234F1Z8</span></p>
+            <p class="receipt-info-line">FSSAI Lic No: <span id="receiptFssai">12421008000452</span></p>
+            <p class="receipt-info-line">Phone: +91 98401 23456</p>
+          </div>
+
+          <div class="receipt-divider">--------------------------------</div>
+
+          <div class="receipt-meta">
+            <div class="meta-row"><span>Bill No:</span> <strong id="recBillNo">HAP-1001</strong></div>
+            <div class="meta-row"><span>Date:</span> <span id="recDate">17/10/2026</span></div>
+            <div class="meta-row"><span>Time:</span> <span id="recTime">13:45:00</span></div>
+            <div class="meta-row"><span>Cashier:</span> <span id="recCashier">Jeeva M.</span></div>
+            <div class="meta-row" id="recCustRow"><span>Customer:</span> <span id="recCustPhone">Walk-in</span></div>
+          </div>
+
+          <div class="receipt-divider">================================</div>
+
+          <table class="receipt-items-table">
+            <thead>
+              <tr>
+                <th class="th-item">ITEM</th>
+                <th class="th-qty">QTY</th>
+                <th class="th-rate">RATE</th>
+                <th class="th-amt">AMT(₹)</th>
+              </tr>
+            </thead>
+            <tbody id="recItemsBody">
+              <!-- Populated via JS -->
+            </tbody>
+          </table>
+
+          <div class="receipt-divider">--------------------------------</div>
+
+          <div class="receipt-summary-block">
+            <div class="sum-row"><span>Total Items:</span> <span id="recTotalQty">0</span></div>
+            <div class="sum-row"><span>Taxable Value:</span> <span id="recTaxable">₹0.00</span></div>
+            <div class="sum-row"><span>CGST:</span> <span id="recCgst">₹0.00</span></div>
+            <div class="sum-row"><span>SGST:</span> <span id="recSgst">₹0.00</span></div>
+            <div class="sum-row" id="recDiscRow" style="display: none;"><span>Discount:</span> <span id="recDiscount">- ₹0.00</span></div>
+            <div class="sum-row"><span>Round Off:</span> <span id="recRoundOff">₹0.00</span></div>
+            <div class="receipt-divider">================================</div>
+            <div class="sum-row net-row"><strong>NET PAYABLE:</strong> <strong id="recNetPayable">₹0.00</strong></div>
+            <div class="receipt-divider">================================</div>
+            <div class="sum-row"><span>Payment Mode:</span> <strong id="recPayMode">CASH</strong></div>
+            <div class="sum-row" id="recCashGivenRow"><span>Cash Tendered:</span> <span id="recCashGiven">₹0.00</span></div>
+            <div class="sum-row" id="recChangeRow"><span>Change Returned:</span> <span id="recChangeReturned">₹0.00</span></div>
+          </div>
+
+          <div class="receipt-qr-wrap">
+            <canvas id="receiptQrCanvas" class="receipt-qr-canvas"></canvas>
+            <p class="qr-label">Scan to verify invoice & earn HAP Points</p>
+          </div>
+
+          <div class="receipt-footer">
+            <p>*** Fresh Dairy • Delicious Ice Creams ***</p>
+            <p>Thank you for shopping at HAP Daily!</p>
+            <p>No exchange on dairy & frozen products once sold.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="printReceiptDirectBtn">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          <span>Print Receipt (Thermal 80mm)</span>
+        </button>
+        <button class="btn btn-secondary" id="shareWhatsappBtn">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span>WhatsApp Bill</span>
+        </button>
+        <button class="btn btn-tertiary" id="closeReceiptBtn2">Done / Next Bill</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. UPI / QR PAYMENT MODAL -->
+  <div class="modal-backdrop" id="upiModal">
+    <div class="modal-window upi-modal-window">
+      <div class="modal-header">
+        <h3 class="modal-title">HAP Instant UPI Payment</h3>
+        <button class="modal-close-btn" id="closeUpiModalBtn">✕</button>
+      </div>
+      <div class="upi-modal-body">
+        <div class="upi-qr-card">
+          <div class="upi-brand-row">
+            <span class="upi-logo-tag">BHIM UPI</span>
+            <div class="upi-icons-row">
+              <span class="app-chip">GPay</span>
+              <span class="app-chip">PhonePe</span>
+              <span class="app-chip">Paytm</span>
+              <span class="app-chip">CRED</span>
+            </div>
+          </div>
+          <div class="upi-qr-canvas-wrap">
+            <canvas id="upiLiveQrCanvas" class="upi-canvas"></canvas>
+          </div>
+          <div class="upi-amount-pill">
+            <span class="upi-amt-label">Payable Amount:</span>
+            <span class="upi-amt-val" id="upiModalAmount">₹0.00</span>
+          </div>
+          <div class="upi-vpa-text">
+            <span>Merchant VPA: <strong>hapdaily.retail@okhdfcbank</strong></span>
+          </div>
+        </div>
+
+        <div class="upi-status-box">
+          <div class="spinner-pulse"></div>
+          <div>
+            <p class="upi-waiting-title">Awaiting Customer Scan & Pin...</p>
+            <p class="upi-waiting-desc">Sound box will chime upon receipt</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" id="simulateUpiSuccessBtn">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>Simulate Payment Received</span>
+        </button>
+        <button class="btn btn-secondary" id="cancelUpiBtn">Cancel UPI</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. STORE SETTINGS MODAL -->
+  <div class="modal-backdrop" id="settingsModal">
+    <div class="modal-window settings-modal-window">
+      <div class="modal-header">
+        <h3 class="modal-title">HAP Daily Outlet Configuration</h3>
+        <button class="modal-close-btn" id="closeSettingsModalBtn">✕</button>
+      </div>
+      <div class="modal-body form-grid">
+        <div class="form-group">
+          <label>Store Name</label>
+          <input type="text" id="settingStoreName" value="HAP Daily - Anna Nagar">
+        </div>
+        <div class="form-group">
+          <label>Franchise Outlet ID</label>
+          <input type="text" id="settingStoreId" value="HAP-CHN-2408">
+        </div>
+        <div class="form-group full-col">
+          <label>Outlet Address</label>
+          <input type="text" id="settingStoreAddress" value="No. 12, 2nd Avenue, Anna Nagar West, Chennai - 600040">
+        </div>
+        <div class="form-group">
+          <label>GSTIN</label>
+          <input type="text" id="settingGstin" value="33AAACH1234F1Z8">
+        </div>
+        <div class="form-group">
+          <label>FSSAI License No.</label>
+          <input type="text" id="settingFssai" value="12421008000452">
+        </div>
+        <div class="form-group">
+          <label>Cashier Name</label>
+          <input type="text" id="settingCashier" value="Jeeva M.">
+        </div>
+        <div class="form-group">
+          <label>Merchant UPI ID</label>
+          <input type="text" id="settingUpiVpa" value="hapdaily.retail@okhdfcbank">
+        </div>
+        <div class="form-group full-col">
+          <label class="checkbox-label">
+            <input type="checkbox" id="settingSoundToggle" checked>
+            <span>Enable POS Audio Beep & Cash Register Sound FX</span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="saveSettingsBtn">Save Settings</button>
+        <button class="btn btn-secondary" id="loadSampleDataBtn">Preload Demo Sales Data</button>
+        <button class="btn btn-tertiary" id="closeSettingsBtn2">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. ADD CUSTOM PRODUCT MODAL -->
+  <div class="modal-backdrop" id="addProductModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 class="modal-title">Add New Store SKU</h3>
+        <button class="modal-close-btn" id="closeAddProductModalBtn">✕</button>
+      </div>
+      <div class="modal-body form-grid">
+        <div class="form-group full-col">
+          <label>Product Name *</label>
+          <input type="text" id="newProdName" placeholder="e.g. Arun Cassatta Special 500ml" required>
+        </div>
+        <div class="form-group">
+          <label>Brand</label>
+          <select id="newProdBrand">
+            <option value="Arun Icecreams">Arun Icecreams</option>
+            <option value="Arokya">Arokya</option>
+            <option value="Hatsun">Hatsun</option>
+            <option value="HAP Cake">HAP Cake</option>
+            <option value="Hanobar">Hanobar</option>
+            <option value="Dako">Dako</option>
+            <option value="Aniva">Aniva</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <input type="text" id="newProdCategory" placeholder="e.g. Ice Cream Specialities">
+        </div>
+        <div class="form-group">
+          <label>Barcode / Item Code</label>
+          <input type="text" id="newProdBarcode" placeholder="e.g. 890123499999">
+        </div>
+        <div class="form-group">
+          <label>Packaging / Unit Size</label>
+          <input type="text" id="newProdUnit" placeholder="e.g. 500 ml / 200 g">
+        </div>
+        <div class="form-group">
+          <label>Retail MRP (₹) *</label>
+          <input type="number" id="newProdPrice" min="1" step="0.5" placeholder="45" required>
+        </div>
+        <div class="form-group">
+          <label>GST Rate (%)</label>
+          <select id="newProdGst">
+            <option value="5">5% (Milk / Curd)</option>
+            <option value="12">12% (Ghee / Butter / Cheese)</option>
+            <option value="18" selected>18% (Ice Cream / Cakes / Spreads)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Initial Stock (Units)</label>
+          <input type="number" id="newProdStock" min="0" value="30">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="saveNewProductBtn">Add Product to Inventory</button>
+        <button class="btn btn-tertiary" id="cancelNewProductBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>

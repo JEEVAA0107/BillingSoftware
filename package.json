@@ -1,0 +1,22 @@
+{
+  "name": "hap-billing-software",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build_dataset.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "vite": "^8.3.4"
+  },
+  "dependencies": {
+    "canvas-confetti": "^1.9.4",
+    "qrcode": "^1.5.4"
+  }
+}
