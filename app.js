@@ -409,7 +409,7 @@ function renderBrandTabs() {
 
 function renderCategoryPills() {
   const container = document.getElementById('categoryPillsContainer');
-  if (!container) return;
+  const catSelect = document.getElementById('categorySelectDropdown');
 
   // Get categories for currently selected brand
   let availableProducts = STATE.products;
@@ -421,24 +421,43 @@ function renderCategoryPills() {
   availableProducts.forEach(p => categorySet.add(p.category));
   const categories = Array.from(categorySet).sort();
 
-  let pillsHtml = `
-    <button class="cat-pill ${STATE.activeCategory === 'all' ? 'active' : ''}" data-cat="all">All Categories</button>
-  `;
+  // Populate compact select dropdown
+  if (catSelect) {
+    catSelect.innerHTML = `<option value="all">All Categories (${categories.length})</option>` +
+      categories.map(cat => `<option value="${escapeHtml(cat)}" ${STATE.activeCategory === cat ? 'selected' : ''}>${escapeHtml(cat)}</option>`).join('');
+    
+    if (!catSelect.dataset.bound) {
+      catSelect.dataset.bound = 'true';
+      catSelect.addEventListener('change', () => {
+        STATE.activeCategory = catSelect.value;
+        renderCategoryPills();
+        renderCatalog();
+      });
+    }
+  }
 
-  categories.forEach(cat => {
-    const activeClass = STATE.activeCategory === cat ? 'active' : '';
-    pillsHtml += `<button class="cat-pill ${activeClass}" data-cat="${escapeHtml(cat)}">${escapeHtml(cat)}</button>`;
-  });
+  // Populate pills if container is present
+  if (container) {
+    let pillsHtml = `
+      <button class="cat-pill ${STATE.activeCategory === 'all' ? 'active' : ''}" data-cat="all">All Categories</button>
+    `;
 
-  container.innerHTML = pillsHtml;
-
-  container.querySelectorAll('.cat-pill').forEach(btn => {
-    btn.addEventListener('click', () => {
-      STATE.activeCategory = btn.dataset.cat;
-      renderCategoryPills();
-      renderCatalog();
+    categories.forEach(cat => {
+      const activeClass = STATE.activeCategory === cat ? 'active' : '';
+      pillsHtml += `<button class="cat-pill ${activeClass}" data-cat="${escapeHtml(cat)}">${escapeHtml(cat)}</button>`;
     });
-  });
+
+    container.innerHTML = pillsHtml;
+
+    container.querySelectorAll('.cat-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        STATE.activeCategory = btn.dataset.cat;
+        if (catSelect) catSelect.value = btn.dataset.cat;
+        renderCategoryPills();
+        renderCatalog();
+      });
+    });
+  }
 }
 
 function renderCatalog() {
@@ -745,12 +764,14 @@ function renderCart() {
 
   if (floatingPill) {
     if (totals.totalQty > 0) {
-      floatingPill.style.display = 'flex';
+      floatingPill.classList.add('visible');
       if (floatingCount) floatingCount.textContent = `${totals.totalQty} items`;
       if (floatingTotal) floatingTotal.textContent = `₹${totals.grandTotal}`;
     } else {
-      floatingPill.style.display = 'none';
+      floatingPill.classList.remove('visible');
     }
+    // Remove any inline display so CSS media queries control visibility!
+    floatingPill.style.display = '';
   }
 
   // Update Change Due
@@ -1826,6 +1847,31 @@ function setupEventListeners() {
   document.getElementById('orderPaymentFilter')?.addEventListener('change', renderOrders);
   document.getElementById('exportOrdersBtn')?.addEventListener('click', () => {
     alert('Invoices report downloaded in CSV format.');
+  });
+
+  // Code Guide Modal buttons & Category quick filters
+  const codeGuideModal = document.getElementById('codeGuideModal');
+  document.getElementById('codeGuideBtn')?.addEventListener('click', () => {
+    codeGuideModal?.classList.add('open');
+  });
+  document.getElementById('closeCodeGuideBtn')?.addEventListener('click', () => {
+    codeGuideModal?.classList.remove('open');
+  });
+  document.getElementById('closeCodeGuideBtn2')?.addEventListener('click', () => {
+    codeGuideModal?.classList.remove('open');
+  });
+
+  document.querySelectorAll('.code-guide-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const prefix = card.dataset.prefix;
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.value = prefix;
+        STATE.searchQuery = prefix;
+        renderCatalog();
+      }
+      codeGuideModal?.classList.remove('open');
+    });
   });
 
   // Settings Modal

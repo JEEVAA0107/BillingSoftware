@@ -118,66 +118,51 @@
         <!-- Left: Product Catalog & Fast Filters -->
         <section class="catalog-section">
           
-          <!-- Quick Item Code & Search Header -->
+          <!-- Compact Quick Code & Search Header -->
           <div class="catalog-search-row">
             <div class="quick-code-wrapper">
               <span class="code-hash-icon">#</span>
-              <input type="text" id="quickCodeInput" placeholder="Enter Item Code (e.g. 105, 201) or 105*2 + Enter..." autocomplete="off">
+              <input type="text" id="quickCodeInput" placeholder="Item Code (e.g. 105, 201) or 105*2 + Enter..." autocomplete="off">
               <button class="code-add-btn" id="quickCodeAddBtn" title="Add item by Code">Add</button>
             </div>
 
             <div class="search-input-wrapper">
               <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              <input type="text" id="searchInput" placeholder="Search product name, code or category..." autocomplete="off">
+              <input type="text" id="searchInput" placeholder="Search product name, code or brand..." autocomplete="off">
               <button class="clear-search-btn" id="clearSearchBtn" title="Clear">✕</button>
             </div>
 
-            <button class="btn-rate-fix" id="openPriceManagerBtn" title="Fix or update prices of any product">
-              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-              <span>Fix Rates</span>
+            <!-- Code Index Quick Reference Button -->
+            <button class="btn-code-guide" id="codeGuideBtn" title="View 100s-900s Item Code Index">
+              <span>🔢 Code Index</span>
             </button>
           </div>
 
-          <!-- Fast-Moving Speed Dial (அடிக்கடி விற்கும் பொருட்கள்) -->
+          <!-- Fast-Moving Speed Dial (Sleek single-line horizontal bar) -->
           <div class="speed-dial-section">
-            <div class="speed-dial-header">
-              <div class="speed-title-wrap">
-                <span class="speed-badge">⚡ SPEED DIAL</span>
-                <span class="speed-subtitle">Top Sellers / Fast Moving (அடிக்கடி விற்கும் பொருட்கள்)</span>
-              </div>
-              <div class="speed-categories-pills">
-                <span class="code-guide-pill" title="Range 101-134">100s: Milk</span>
-                <span class="code-guide-pill" title="Range 201-224">200s: Curd</span>
-                <span class="code-guide-pill" title="Range 301-345">300s: Paneer/Ghee</span>
-                <span class="code-guide-pill" title="Range 401-447">400s: Bars/Bites</span>
-                <span class="code-guide-pill" title="Range 501-530">500s: Cones</span>
-                <span class="code-guide-pill" title="Range 601-628">600s: Slice it</span>
-                <span class="code-guide-pill" title="Range 701-702">700s: Cakes</span>
-              </div>
-            </div>
+            <span class="speed-badge">⚡ TOP SELLERS</span>
             <div class="speed-dial-chips-scroller" id="speedDialContainer">
               <!-- Populated via JS -->
             </div>
           </div>
 
-          <!-- Brand Filter Tabs -->
-          <div class="brand-tabs-scroller" id="brandTabsContainer">
-            <!-- Brand buttons populated via JS -->
-          </div>
-
-          <!-- Subcategory Filter Pills -->
-          <div class="category-pills-scroller" id="categoryPillsContainer">
-            <!-- Category pills populated via JS -->
-          </div>
-
-          <!-- Products Grid -->
-          <div class="catalog-grid-header">
-            <span class="results-count" id="catalogResultsCount">Showing 215 items</span>
+          <!-- Unified Brand & Subcategory Navigation Bar -->
+          <div class="catalog-filter-bar">
+            <div class="brand-tabs-scroller" id="brandTabsContainer">
+              <!-- Brand buttons populated via JS -->
+            </div>
+            <div class="category-select-wrapper">
+              <select id="categorySelectDropdown" class="category-select" title="Filter by Subcategory">
+                <option value="all">All Categories</option>
+              </select>
+            </div>
+            <div class="category-pills-scroller" id="categoryPillsContainer" style="display: none;"></div>
             <div class="catalog-view-options">
               <label class="stock-filter-toggle">
                 <input type="checkbox" id="hideOutOfStockCheckbox">
                 <span>In Stock Only</span>
               </label>
+              <span class="results-count" id="catalogResultsCount">215 items</span>
             </div>
           </div>
 
@@ -222,15 +207,15 @@
             <button class="new-bill-tab-btn" id="newBillTabBtn" title="Open New Hold Bill Tab">+ Tab</button>
           </div>
 
-          <!-- Customer Loyalty Info -->
+          <!-- Compact Customer Info -->
           <div class="customer-strip">
             <div class="customer-input-group">
               <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              <input type="tel" id="customerPhone" placeholder="Customer Mobile (Optional)" maxlength="10">
+              <input type="tel" id="customerPhone" placeholder="Mobile (Optional)" maxlength="10">
             </div>
-            <div class="customer-input-group">
+            <div class="customer-input-group name-group">
               <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              <input type="text" id="customerName" placeholder="Customer Name">
+              <input type="text" id="customerName" placeholder="Name">
             </div>
             <div class="loyalty-pill" id="customerLoyaltyPill" style="display: none;">
               <span>⭐ 35 Pts</span>
@@ -244,13 +229,13 @@
                 <svg class="empty-cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
               </div>
               <p class="empty-title">Cart is empty</p>
-              <p class="empty-hint">Scan a barcode or click any product to begin billing</p>
+              <p class="empty-hint">Type a code or click any product to bill</p>
             </div>
             <table class="cart-table" id="cartTable" style="display: none;">
               <thead>
                 <tr>
                   <th class="col-item">Item</th>
-                  <th class="col-price">Price</th>
+                  <th class="col-price">Rate</th>
                   <th class="col-qty">Qty</th>
                   <th class="col-tax">GST</th>
                   <th class="col-total">Total</th>
@@ -263,88 +248,72 @@
             </table>
           </div>
 
-          <!-- Cart Calculations & Breakdown -->
-          <div class="cart-totals-card">
-            <div class="totals-row">
-              <span>Taxable Amount</span>
-              <span id="taxableAmount">₹0.00</span>
-            </div>
-            <div class="totals-row tax-breakdown-row">
-              <span class="tax-label">GST (CGST + SGST)</span>
-              <span id="gstAmount">₹0.00</span>
-            </div>
-            <div class="totals-row discount-row">
-              <div class="discount-label-wrap">
-                <span>Discount</span>
-                <button class="discount-quick-btn" id="discountBtn" title="Apply Discount">Apply %</button>
+          <!-- Pinned Cart Checkout Footer (Zero Overflow) -->
+          <div class="cart-checkout-footer">
+            <!-- Compact Totals Summary -->
+            <div class="cart-totals-card">
+              <div class="totals-compact-line">
+                <span>Taxable: <strong id="taxableAmount">₹0.00</strong></span>
+                <span>GST: <strong id="gstAmount">₹0.00</strong></span>
+                <span class="discount-link" id="discountBtn" title="Apply Discount">Disc: <strong id="discountAmount">- ₹0.00</strong></span>
+                <span style="display: none;" id="roundOffAmount">₹0.00</span>
               </div>
-              <span id="discountAmount">- ₹0.00</span>
-            </div>
-            <div class="totals-row roundoff-row">
-              <span>Round Off</span>
-              <span id="roundOffAmount">₹0.00</span>
-            </div>
-            <div class="grand-total-row">
-              <span class="grand-title">GRAND TOTAL</span>
-              <span class="grand-amount" id="grandTotal">₹0.00</span>
-            </div>
-          </div>
-
-          <!-- Fast Cash Tender Shortcuts -->
-          <div class="cash-tender-bar">
-            <div class="tender-input-wrap">
-              <span class="rupee-symbol">₹</span>
-              <input type="number" id="cashTenderedInput" placeholder="Cash Received" min="0" step="1">
-            </div>
-            <div class="change-display" id="changeDisplayWrap">
-              <span class="change-label">Change Due:</span>
-              <span class="change-amount" id="changeDueAmount">₹0.00</span>
-            </div>
-          </div>
-
-          <div class="quick-cash-chips" id="quickCashChips">
-            <button class="cash-chip" data-amt="exact">Exact</button>
-            <button class="cash-chip" data-amt="50">₹50</button>
-            <button class="cash-chip" data-amt="100">₹100</button>
-            <button class="cash-chip" data-amt="200">₹200</button>
-            <button class="cash-chip" data-amt="500">₹500</button>
-          </div>
-
-          <!-- Payment Mode Triggers -->
-          <div class="payment-methods-grid">
-            <button class="pay-method-btn active" data-method="CASH" id="payMethodCash">
-              <svg class="pay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
-              <span>Cash</span>
-              <kbd class="shortcut-key">F4</kbd>
-            </button>
-            <button class="pay-method-btn" data-method="UPI" id="payMethodUpi">
-              <svg class="pay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-              <span>UPI / QR</span>
-              <kbd class="shortcut-key">F5</kbd>
-            </button>
-            <button class="pay-method-btn" data-method="CARD" id="payMethodCard">
-              <svg class="pay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-              <span>Card</span>
-            </button>
-          </div>
-
-          <!-- Bottom Action Buttons -->
-          <div class="cart-bottom-actions">
-            <button class="action-btn hold-btn" id="holdBillBtn" title="Hold this bill for later">
-              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-              <span>Hold (F8)</span>
-            </button>
-            <button class="action-btn clear-btn" id="clearCartBtn" title="Discard current cart">
-              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-              <span>Clear</span>
-            </button>
-            <button class="action-btn charge-btn" id="checkoutBtn">
-              <svg class="charge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              <div class="charge-btn-text">
-                <span class="charge-label-text">CHARGE & PRINT</span>
-                <span class="charge-sub-total" id="chargeBtnAmount">₹0.00</span>
+              <div class="grand-total-row">
+                <span class="grand-title">GRAND TOTAL</span>
+                <span class="grand-amount" id="grandTotal">₹0.00</span>
               </div>
-            </button>
+            </div>
+
+            <!-- Fast Tender & Quick Chips in 1 compact bar -->
+            <div class="tender-quick-row">
+              <div class="tender-input-wrap">
+                <span class="rupee-symbol">₹</span>
+                <input type="number" id="cashTenderedInput" placeholder="Cash Recd" min="0" step="1">
+              </div>
+              <div class="quick-cash-chips" id="quickCashChips">
+                <button class="cash-chip" data-amt="exact">Exact</button>
+                <button class="cash-chip" data-amt="50">50</button>
+                <button class="cash-chip" data-amt="100">100</button>
+                <button class="cash-chip" data-amt="200">200</button>
+                <button class="cash-chip" data-amt="500">500</button>
+              </div>
+              <div class="change-display" id="changeDisplayWrap">
+                <span class="change-label">Due:</span>
+                <span class="change-amount" id="changeDueAmount">₹0.00</span>
+              </div>
+            </div>
+
+            <!-- Payment Methods & Actions Row -->
+            <div class="checkout-actions-block">
+              <div class="payment-methods-grid">
+                <button class="pay-method-btn active" data-method="CASH" id="payMethodCash">
+                  <span>💵 Cash</span>
+                  <kbd class="shortcut-key">F4</kbd>
+                </button>
+                <button class="pay-method-btn" data-method="UPI" id="payMethodUpi">
+                  <span>📱 UPI QR</span>
+                  <kbd class="shortcut-key">F5</kbd>
+                </button>
+                <button class="pay-method-btn" data-method="CARD" id="payMethodCard">
+                  <span>💳 Card</span>
+                </button>
+              </div>
+
+              <div class="cart-bottom-actions">
+                <button class="action-btn hold-btn" id="holdBillBtn" title="Hold this bill for later">
+                  <span>Hold (F8)</span>
+                </button>
+                <button class="action-btn clear-btn" id="clearCartBtn" title="Discard current cart">
+                  <span>Clear</span>
+                </button>
+                <button class="action-btn charge-btn" id="checkoutBtn">
+                  <div class="charge-btn-text">
+                    <span class="charge-label-text">CHARGE & PRINT</span>
+                    <span class="charge-sub-total" id="chargeBtnAmount">₹0.00</span>
+                  </div>
+                </button>
+              </div>
+            </div>
           </div>
 
         </aside>
@@ -944,6 +913,98 @@
         <button class="btn btn-secondary" id="resetDefaultPricesBtn">Reset to Default MRP</button>
         <button class="btn btn-primary" id="saveAllPricesBtn">Save & Apply All Rates</button>
         <button class="btn btn-tertiary" id="closePriceManagerBtn2">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. ITEM CODE INDEX MODAL (பொருள் குறியீடுகள் வழிகாட்டி) -->
+  <div class="modal-backdrop" id="codeGuideModal">
+    <div class="modal-window code-guide-window">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">🔢 Quick Billing Item Code Index</h3>
+          <p class="modal-subtitle">Type code in search or quick input to add to bill in 1 second.</p>
+        </div>
+        <button class="modal-close-btn" id="closeCodeGuideBtn">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="code-guide-grid">
+          <div class="code-guide-card" data-prefix="1">
+            <div class="cgc-badge cgc-100">100s</div>
+            <div class="cgc-content">
+              <strong>Fresh Milk (பால்)</strong>
+              <p>Codes: #101 - #134</p>
+              <span class="cgc-samples">Full Cream (105), Standardized (110), Toned (101)</span>
+            </div>
+          </div>
+          <div class="code-guide-card" data-prefix="2">
+            <div class="cgc-badge cgc-200">200s</div>
+            <div class="cgc-content">
+              <strong>Curd, Lassi & Buttermilk (தயிர்)</strong>
+              <p>Codes: #201 - #224</p>
+              <span class="cgc-samples">Curd 500g (201), Cup 200g (202), Buttermilk (210)</span>
+            </div>
+          </div>
+          <div class="code-guide-card" data-prefix="3">
+            <div class="cgc-badge cgc-300">300s</div>
+            <div class="cgc-content">
+              <strong>Paneer, Ghee & Butter (நெய், பன்னீர்)</strong>
+              <p>Codes: #301 - #345</p>
+              <span class="cgc-samples">Paneer 200g (301), Ghee 500ml (312), Butter 100g (320)</span>
+            </div>
+          </div>
+          <div class="code-guide-card" data-prefix="4">
+            <div class="cgc-badge cgc-400">400s</div>
+            <div class="cgc-content">
+              <strong>Arun Bars, Bites & Candies</strong>
+              <p>Codes: #401 - #447</p>
+              <span class="cgc-samples">Choco Bite (401), Kids Bar (410), Hanobar (420)</span>
+            </div>
+          </div>
+          <div class="code-guide-card" data-prefix="5">
+            <div class="cgc-badge cgc-500">500s</div>
+            <div class="cgc-content">
+              <strong>Arun Cones, Cups & Kulfi</strong>
+              <p>Codes: #501 - #530</p>
+              <span class="cgc-samples">iCone Vanilla (501), Mango Cup (510), Kulfi (520)</span>
+            </div>
+          </div>
+          <div class="code-guide-card" data-prefix="6">
+            <div class="cgc-badge cgc-600">600s</div>
+            <div class="cgc-content">
+              <strong>Arun Slice it & Tubs (ஸ்லைஸ் & டப்)</strong>
+              <p>Codes: #601 - #628</p>
+              <span class="cgc-samples">Slice it Mango (601), Cassatta (602), Vanilla Tub (620)</span>
+            </div>
+          </div>
+          <div class="code-guide-card" data-prefix="7">
+            <div class="cgc-badge cgc-700">700s</div>
+            <div class="cgc-content">
+              <strong>HAP Ice Cream Cakes</strong>
+              <p>Codes: #701 - #702</p>
+              <span class="cgc-samples">Almond Treat (701), Blackcurrant (702)</span>
+            </div>
+          </div>
+          <div class="code-guide-card" data-prefix="8">
+            <div class="cgc-badge cgc-800">800s</div>
+            <div class="cgc-content">
+              <strong>Whey Drinks</strong>
+              <p>Codes: #801 - #805</p>
+              <span class="cgc-samples">Whey Mango (801), Guava (802)</span>
+            </div>
+          </div>
+          <div class="code-guide-card" data-prefix="9">
+            <div class="cgc-badge cgc-900">900s</div>
+            <div class="cgc-content">
+              <strong>Dako Nuts & Confectionery</strong>
+              <p>Codes: #901 - #909</p>
+              <span class="cgc-samples">Salted Almonds (901), Cashews (905)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="closeCodeGuideBtn2">Close</button>
       </div>
     </div>
   </div>
