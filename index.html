@@ -74,6 +74,11 @@
         </div>
       </div>
 
+      <button class="nav-rate-btn" id="headerPriceManagerBtn" title="Product Rate Fixer (விலை மாற்றம்)">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span>Fix Rates</span>
+      </button>
+
       <button class="icon-btn mobile-cart-btn" id="mobileHeaderCartBtn" title="View Cart">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
         <span class="mobile-cart-badge" id="mobileHeaderCartBadge">0</span>
@@ -113,26 +118,45 @@
         <!-- Left: Product Catalog & Fast Filters -->
         <section class="catalog-section">
           
-          <!-- Fast Barcode & Search Header -->
+          <!-- Quick Item Code & Search Header -->
           <div class="catalog-search-row">
-            <div class="barcode-input-wrapper">
-              <svg class="barcode-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5v14M7 5v14M11 5v14M15 5v14M19 5v14M21 5v14"/></svg>
-              <input type="text" id="barcodeInput" placeholder="Scan Barcode or Item Code (e.g. 890123400001)..." autocomplete="off">
-              <button class="barcode-enter-btn" id="barcodeEnterBtn" title="Add item">Add</button>
+            <div class="quick-code-wrapper">
+              <span class="code-hash-icon">#</span>
+              <input type="text" id="quickCodeInput" placeholder="Enter Item Code (e.g. 105, 201) or 105*2 + Enter..." autocomplete="off">
+              <button class="code-add-btn" id="quickCodeAddBtn" title="Add item by Code">Add</button>
             </div>
 
             <div class="search-input-wrapper">
               <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              <input type="text" id="searchInput" placeholder="Search milk, curd, arun cone, cassatta, paneer..." autocomplete="off">
+              <input type="text" id="searchInput" placeholder="Search product name, code or category..." autocomplete="off">
               <button class="clear-search-btn" id="clearSearchBtn" title="Clear">✕</button>
             </div>
 
-            <div class="quick-scanner-simulator">
-              <label for="demoScanSelect" class="sim-label">⚡ Fast Demo Scan:</label>
-              <select id="demoScanSelect">
-                <option value="">-- Quick Scan Item --</option>
-                <!-- Populated via JS -->
-              </select>
+            <button class="btn-rate-fix" id="openPriceManagerBtn" title="Fix or update prices of any product">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <span>Fix Rates</span>
+            </button>
+          </div>
+
+          <!-- Fast-Moving Speed Dial (அடிக்கடி விற்கும் பொருட்கள்) -->
+          <div class="speed-dial-section">
+            <div class="speed-dial-header">
+              <div class="speed-title-wrap">
+                <span class="speed-badge">⚡ SPEED DIAL</span>
+                <span class="speed-subtitle">Top Sellers / Fast Moving (அடிக்கடி விற்கும் பொருட்கள்)</span>
+              </div>
+              <div class="speed-categories-pills">
+                <span class="code-guide-pill" title="Range 101-134">100s: Milk</span>
+                <span class="code-guide-pill" title="Range 201-224">200s: Curd</span>
+                <span class="code-guide-pill" title="Range 301-345">300s: Paneer/Ghee</span>
+                <span class="code-guide-pill" title="Range 401-447">400s: Bars/Bites</span>
+                <span class="code-guide-pill" title="Range 501-530">500s: Cones</span>
+                <span class="code-guide-pill" title="Range 601-628">600s: Slice it</span>
+                <span class="code-guide-pill" title="Range 701-702">700s: Cakes</span>
+              </div>
+            </div>
+            <div class="speed-dial-chips-scroller" id="speedDialContainer">
+              <!-- Populated via JS -->
             </div>
           </div>
 
@@ -865,6 +889,61 @@
       <div class="modal-footer">
         <button class="btn btn-primary" id="saveNewProductBtn">Add Product to Inventory</button>
         <button class="btn btn-tertiary" id="cancelNewProductBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. PRICE FIXER / RATE MANAGER MODAL (விலை நிர்ணயம் & மாற்றம்) -->
+  <div class="modal-backdrop" id="priceManagerModal">
+    <div class="modal-window price-manager-window">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">💰 Product Rate Fixer (விலை நிர்ணயம் & மாற்றம்)</h3>
+          <p class="modal-subtitle">Milk, curd, or ice cream rate changed? Update selling prices instantly here.</p>
+        </div>
+        <button class="modal-close-btn" id="closePriceManagerBtn">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="price-manager-filter-row">
+          <div class="search-input-wrapper flex-1">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="priceManagerSearch" placeholder="Search by product name or code (e.g. 105, 201, milk)...">
+          </div>
+          <div class="select-wrapper">
+            <select id="priceManagerBrandSelect">
+              <option value="ALL">All Brands</option>
+              <option value="Arokya">Arokya</option>
+              <option value="Hatsun">Hatsun</option>
+              <option value="Arun Icecreams">Arun Icecreams</option>
+              <option value="HAP Cake">HAP Cake</option>
+              <option value="Hanobar">Hanobar</option>
+              <option value="Dako">Dako</option>
+              <option value="Aniva">Aniva</option>
+            </select>
+          </div>
+        </div>
+        <div class="price-table-container">
+          <table class="data-table" id="priceManagerTable">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Product Name</th>
+                <th>Brand / Unit</th>
+                <th>Current Rate (₹)</th>
+                <th>New Rate (₹)</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="priceManagerTableBody">
+              <!-- Injected via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="resetDefaultPricesBtn">Reset to Default MRP</button>
+        <button class="btn btn-primary" id="saveAllPricesBtn">Save & Apply All Rates</button>
+        <button class="btn btn-tertiary" id="closePriceManagerBtn2">Close</button>
       </div>
     </div>
   </div>

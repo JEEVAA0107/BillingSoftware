@@ -122,11 +122,13 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCatalog();
   renderBrandTabs();
   renderCategoryPills();
+  renderSpeedDial();
+  setupQuickCodeInput();
+  setupPriceManager();
   renderCart();
   renderInventory();
   renderReports();
   renderOrders();
-  populateDemoScanner();
 });
 
 // Load products and local storage
@@ -144,6 +146,20 @@ function loadData() {
   if (savedSettings) {
     try {
       STATE.settings = { ...STATE.settings, ...JSON.parse(savedSettings) };
+    } catch (e) {}
+  }
+
+  // Load product price / rate overrides (விலை நிர்ணயம் & மாற்றம்)
+  const savedPrices = localStorage.getItem('hap_pos_price_overrides');
+  if (savedPrices) {
+    try {
+      const priceMap = JSON.parse(savedPrices);
+      STATE.products.forEach(p => {
+        if (priceMap[p.id] !== undefined && priceMap[p.id] !== null) {
+          p.price = Number(priceMap[p.id]);
+          p.mrp = Number(priceMap[p.id]);
+        }
+      });
     } catch (e) {}
   }
 
@@ -172,6 +188,14 @@ function loadData() {
   }
 
   updateHeaderStoreInfo();
+}
+
+function savePriceOverrides() {
+  const priceMap = {};
+  STATE.products.forEach(p => {
+    priceMap[p.id] = p.price;
+  });
+  localStorage.setItem('hap_pos_price_overrides', JSON.stringify(priceMap));
 }
 
 function saveStockOverrides() {
@@ -323,13 +347,14 @@ function getFilteredProducts() {
     list = list.filter(p => p.category === STATE.activeCategory);
   }
 
-  // Filter by search query
+  // Filter by search query (name, category, brand, item code #101, or barcode)
   if (STATE.searchQuery.trim()) {
-    const q = STATE.searchQuery.toLowerCase().trim();
+    const q = STATE.searchQuery.toLowerCase().trim().replace(/^#/, '');
     list = list.filter(p => 
       p.name.toLowerCase().includes(q) ||
       p.category.toLowerCase().includes(q) ||
       p.brand.toLowerCase().includes(q) ||
+      (p.code && p.code.toLowerCase().includes(q)) ||
       p.barcode.includes(q)
     );
   }
@@ -430,7 +455,7 @@ function renderCatalog() {
     grid.innerHTML = `
       <div style="grid-column: 1/-1; text-align: center; padding: 48px; color: var(--text-muted);">
         <p style="font-size: 16px; font-weight: 700;">No items found</p>
-        <p style="font-size: 12px; margin-top: 4px;">Try searching for a different keyword or brand</p>
+        <p style="font-size: 12px; margin-top: 4px;">Try searching for a different item code, keyword, or brand</p>
       </div>
     `;
     return;
@@ -444,7 +469,10 @@ function renderCatalog() {
     return `
       <div class="product-card" data-product-id="${p.id}" tabindex="0">
         <div class="card-top-tags">
-          <span class="brand-badge ${brandClass}">${escapeHtml(p.brand)}</span>
+          <div style="display: flex; gap: 4px; align-items: center; max-width: 68%; overflow: hidden;">
+            <span class="item-code-badge">#${p.code || p.id}</span>
+            <span class="brand-badge ${brandClass}">${escapeHtml(p.brand)}</span>
+          </div>
           <span class="stock-tag ${stockClass}">${stockText}</span>
         </div>
         <div class="card-image-wrap">
@@ -455,6 +483,7 @@ function renderCatalog() {
           <div class="card-price-block">
             <span class="card-price">₹${p.price}</span>
             <span class="card-unit">${escapeHtml(p.unit)}</span>
+            <button class="card-price-edit-btn" data-id="${p.id}" title="Fix / Change Selling Rate (விலை மாற்றம்)">✏️</button>
           </div>
           <button class="card-add-btn" title="Add to Bill">+</button>
         </div>
@@ -462,13 +491,25 @@ function renderCatalog() {
     `;
   }).join('');
 
-  // Add click handlers
+  // Add click handlers for cards
   grid.querySelectorAll('.product-card').forEach(card => {
     card.addEventListener('click', () => {
       const prodId = card.dataset.productId;
       const product = STATE.products.find(x => x.id === prodId);
       if (product) {
         addItemToCart(product);
+      }
+    });
+  });
+
+  // Add click handlers for pencil rate edit buttons
+  grid.querySelectorAll('.card-price-edit-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const id = btn.dataset.id;
+      const product = STATE.products.find(x => x.id === id);
+      if (product) {
+        promptProductPriceChange(product);
       }
     });
   });
@@ -605,9 +646,14 @@ function renderCart() {
         <tr>
           <td class="col-item">
             <div class="cart-item-title">${escapeHtml(item.product.name)}</div>
-            <div class="cart-item-unit">${escapeHtml(item.product.brand)} • ${escapeHtml(item.product.unit)}</div>
+            <div class="cart-item-unit"><span class="chip-code-tag">#${item.product.code || item.product.id}</span> ${escapeHtml(item.product.brand)} • ${escapeHtml(item.product.unit)}</div>
           </td>
-          <td class="col-price cart-price-cell">₹${item.price}</td>
+          <td class="col-price cart-price-cell">
+            <div style="display: inline-flex; align-items: center; gap: 2px;">
+              <span style="font-size: 11px; color: var(--text-muted); font-weight: 700;">₹</span>
+              <input type="number" step="0.5" class="cart-price-input" value="${item.price}" data-id="${item.product.id}" title="Click to adjust line-item selling price">
+            </div>
+          </td>
           <td class="col-qty">
             <div class="qty-control-group">
               <button class="qty-btn" data-action="dec" data-id="${item.product.id}">-</button>
@@ -618,7 +664,7 @@ function renderCart() {
           <td class="col-tax">
             <span class="tax-badge-pill">${item.taxRate}%</span>
           </td>
-          <td class="col-total cart-total-cell">₹${item.total}</td>
+          <td class="col-total cart-total-cell">₹${item.total.toFixed(2)}</td>
           <td class="col-action">
             <button class="item-delete-btn" data-id="${item.product.id}" title="Remove">✕</button>
           </td>
@@ -642,6 +688,28 @@ function renderCart() {
           const id = input.dataset.id;
           const val = parseInt(input.value) || 1;
           updateItemQty(id, Math.max(1, val));
+        });
+      });
+
+      // Direct in-cart price adjustment
+      tableBody.querySelectorAll('.cart-price-input').forEach(input => {
+        input.addEventListener('change', () => {
+          const id = input.dataset.id;
+          const newPrice = parseFloat(input.value);
+          if (!isNaN(newPrice) && newPrice >= 0) {
+            const item = tab.items.find(i => i.product.id === id);
+            if (item) {
+              item.price = newPrice;
+              item.total = item.qty * item.price;
+              renderCart();
+              updateBillTabsUI();
+            }
+          }
+        });
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            input.blur();
+          }
         });
       });
 
@@ -973,6 +1041,7 @@ function renderInventory() {
   if (search) {
     list = list.filter(p => 
       p.name.toLowerCase().includes(search) || 
+      (p.code && p.code.toLowerCase().includes(search)) ||
       p.barcode.includes(search) ||
       p.category.toLowerCase().includes(search)
     );
@@ -999,12 +1068,18 @@ function renderInventory() {
       return `
         <tr>
           <td><img src="${p.image}" class="table-prod-img" onerror="this.src='https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png'"></td>
-          <td><code>${p.barcode}</code></td>
+          <td>
+            <span class="chip-code-tag">#${p.code}</span>
+            <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">${p.barcode}</div>
+          </td>
           <td><strong>${escapeHtml(p.name)}</strong></td>
           <td>${escapeHtml(p.brand)}</td>
           <td>${escapeHtml(p.category)}</td>
           <td>${escapeHtml(p.unit)}</td>
-          <td><strong>₹${p.price}</strong></td>
+          <td>
+            <strong>₹${p.price}</strong>
+            <button class="card-price-edit-btn" data-id="${p.id}" title="Fix Rate">✏️</button>
+          </td>
           <td>${p.taxRate}%</td>
           <td><span style="font-weight: 700; font-family: var(--font-mono);">${p.stock}</span></td>
           <td>${statusBadge}</td>
@@ -1026,6 +1101,16 @@ function renderInventory() {
           saveStockOverrides();
           renderInventory();
           renderCatalog();
+        }
+      });
+    });
+
+    tbody.querySelectorAll('.card-price-edit-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.id;
+        const prod = STATE.products.find(p => p.id === id);
+        if (prod) {
+          promptProductPriceChange(prod);
         }
       });
     });
@@ -1252,53 +1337,319 @@ function renderOrders() {
 }
 
 // ==========================================================================
-// FAST DEMO SCANNER & BARCODE EVENTS
+// SPEED DIAL (அடிக்கடி விற்கும் பொருட்கள்) & FAST-MOVING ITEMS
 // ==========================================================================
-function populateDemoScanner() {
-  const select = document.getElementById('demoScanSelect');
-  if (!select) return;
+function renderSpeedDial() {
+  const container = document.getElementById('speedDialContainer');
+  if (!container) return;
 
-  const popular = [
-    'Arokya Full Cream Milk  500 ml',
-    'Standardized  Milk 500 ml',
-    'Curd 500 g',
-    'Paneer 200 g',
-    'Ghee 500 ml',
-    'Slice it - Mango',
-    'Bites - Choco',
-    'iCone',
-    'Kulfi',
-    'Butter 100 g'
-  ];
+  const fastItems = STATE.products.filter(p => p.isFastMoving);
+  const displayItems = fastItems.length > 0 ? fastItems : STATE.products.slice(0, 16);
 
-  const matched = [];
-  popular.forEach(namePart => {
-    const item = STATE.products.find(p => p.name.toLowerCase().includes(namePart.toLowerCase()));
-    if (item) matched.push(item);
-  });
-
-  select.innerHTML = `<option value="">-- Quick Scan Item --</option>` + matched.map(p => `
-    <option value="${p.barcode}">${p.name} (₹${p.price})</option>
+  container.innerHTML = displayItems.map(p => `
+    <button class="speed-chip" data-id="${p.id}" title="1-Tap Add #${p.code} ${escapeHtml(p.name)}">
+      <span class="chip-code-tag">#${p.code}</span>
+      <span class="chip-name">${escapeHtml(p.name)}</span>
+      <span class="chip-price">₹${p.price}</span>
+    </button>
   `).join('');
 
-  select.addEventListener('change', () => {
-    const barcode = select.value;
-    if (barcode) {
-      handleBarcodeScan(barcode);
-      select.value = '';
+  container.querySelectorAll('.speed-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const id = chip.dataset.id;
+      const product = STATE.products.find(x => x.id === id);
+      if (product) {
+        addItemToCart(product);
+        // Visual tap feedback
+        chip.style.transform = 'scale(0.93)';
+        chip.style.borderColor = 'var(--hap-red)';
+        setTimeout(() => {
+          chip.style.transform = '';
+          chip.style.borderColor = '';
+        }, 150);
+      }
+    });
+  });
+}
+
+// ==========================================================================
+// QUICK ITEM CODE BILLING (#101, #201, #301)
+// ==========================================================================
+function setupQuickCodeInput() {
+  const input = document.getElementById('quickCodeInput');
+  const addBtn = document.getElementById('quickCodeAddBtn');
+  if (!input) return;
+
+  function handleQuickCodeSubmit() {
+    const rawVal = input.value.trim();
+    if (!rawVal) return;
+
+    // Parse code and optional multiplier: "105", "#105", "105*3", "105x2", "105 4"
+    let codePart = rawVal.replace(/^#/, '');
+    let qty = 1;
+
+    const mulMatch = codePart.match(/^([a-zA-Z0-9_\-]+)[*xX\s]+(\d+)$/);
+    if (mulMatch) {
+      codePart = mulMatch[1];
+      qty = parseInt(mulMatch[2]) || 1;
+    }
+
+    codePart = codePart.trim();
+
+    // Match by code, id, or barcode
+    const product = STATE.products.find(p => 
+      (p.code && p.code.toLowerCase() === codePart.toLowerCase()) ||
+      p.id.toLowerCase() === codePart.toLowerCase() ||
+      p.barcode === codePart
+    );
+
+    if (product) {
+      addItemToCart(product, qty);
+      input.value = '';
+      input.classList.remove('input-error');
+      input.classList.add('input-success');
+      setTimeout(() => input.classList.remove('input-success'), 400);
+    } else {
+      audio.beep();
+      input.classList.add('input-error');
+      setTimeout(() => input.classList.remove('input-error'), 600);
+      alert(`⚠️ Item Code "#${codePart}" not found!\n\nPlease check code in Speed Dial or search in catalog.`);
+    }
+  }
+
+  addBtn?.addEventListener('click', handleQuickCodeSubmit);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleQuickCodeSubmit();
+    }
+  });
+
+  // Category guide pills in Speed Dial header
+  document.querySelectorAll('.code-guide-pill').forEach(pill => {
+    pill.style.cursor = 'pointer';
+    pill.addEventListener('click', () => {
+      const text = pill.textContent;
+      const codeMatch = text.match(/^(\d+)s/);
+      if (codeMatch) {
+        const prefix = codeMatch[1];
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+          searchInput.value = prefix;
+          STATE.searchQuery = prefix;
+          renderCatalog();
+        }
+      }
+    });
+  });
+}
+
+// ==========================================================================
+// PRODUCT RATE FIXER (விலை நிர்ணயம் & மாற்றம்)
+// ==========================================================================
+function promptProductPriceChange(product) {
+  const currentPrice = product.price;
+  const input = prompt(
+    `💰 Fix / Change Rate for Product:\n\n[#${product.code}] ${product.name}\nBrand: ${product.brand} • Unit: ${product.unit}\n\nCurrent Selling Rate: ₹${currentPrice}\n\nEnter New Rate (₹):`,
+    currentPrice
+  );
+
+  if (input !== null) {
+    const newPrice = parseFloat(input.trim());
+    if (!isNaN(newPrice) && newPrice >= 0) {
+      product.price = newPrice;
+      product.mrp = newPrice;
+      savePriceOverrides();
+
+      // Update in active carts if item exists
+      STATE.tabs.forEach(tab => {
+        const cartItem = tab.items.find(i => i.product.id === product.id);
+        if (cartItem) {
+          cartItem.price = newPrice;
+          cartItem.total = cartItem.qty * cartItem.price;
+        }
+      });
+
+      renderCatalog();
+      renderSpeedDial();
+      renderCart();
+      renderInventory();
+      audio.beep();
+    } else {
+      alert('Please enter a valid positive number for rate.');
+    }
+  }
+}
+
+function setupPriceManager() {
+  const modal = document.getElementById('priceManagerModal');
+  const openBtn = document.getElementById('openPriceManagerBtn');
+  const headerBtn = document.getElementById('headerPriceManagerBtn');
+  const closeBtn = document.getElementById('closePriceManagerBtn');
+  const closeBtn2 = document.getElementById('closePriceManagerBtn2');
+  const searchInput = document.getElementById('priceManagerSearch');
+  const brandSelect = document.getElementById('priceManagerBrandSelect');
+  const saveAllBtn = document.getElementById('saveAllPricesBtn');
+  const resetBtn = document.getElementById('resetDefaultPricesBtn');
+
+  function openModal() {
+    renderPriceManagerTable();
+    modal?.classList.add('open');
+    searchInput?.focus();
+  }
+
+  function closeModal() {
+    modal?.classList.remove('open');
+  }
+
+  openBtn?.addEventListener('click', openModal);
+  headerBtn?.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+  closeBtn2?.addEventListener('click', closeModal);
+
+  searchInput?.addEventListener('input', renderPriceManagerTable);
+  brandSelect?.addEventListener('change', renderPriceManagerTable);
+
+  saveAllBtn?.addEventListener('click', () => {
+    const tableBody = document.getElementById('priceManagerTableBody');
+    if (!tableBody) return;
+
+    let updatedCount = 0;
+    tableBody.querySelectorAll('.rate-edit-input').forEach(inp => {
+      const id = inp.dataset.id;
+      const newRate = parseFloat(inp.value);
+      if (!isNaN(newRate) && newRate >= 0) {
+        const prod = STATE.products.find(p => p.id === id);
+        if (prod && prod.price !== newRate) {
+          prod.price = newRate;
+          prod.mrp = newRate;
+          updatedCount++;
+        }
+      }
+    });
+
+    savePriceOverrides();
+
+    // Also update any active carts
+    STATE.tabs.forEach(tab => {
+      tab.items.forEach(cartItem => {
+        const p = STATE.products.find(x => x.id === cartItem.product.id);
+        if (p) {
+          cartItem.price = p.price;
+          cartItem.total = cartItem.qty * cartItem.price;
+        }
+      });
+    });
+
+    renderCatalog();
+    renderSpeedDial();
+    renderCart();
+    renderInventory();
+    closeModal();
+    audio.chime();
+    alert(`✅ Successfully updated rates for ${updatedCount > 0 ? updatedCount : 'all'} products! Rates are now active.`);
+  });
+
+  resetBtn?.addEventListener('click', () => {
+    if (confirm('Reset all product rates back to default catalog MRP?')) {
+      localStorage.removeItem('hap_pos_price_overrides');
+      const sourceProducts = (typeof HAP_PRODUCTS_DATA !== 'undefined' && HAP_PRODUCTS_DATA.products) 
+        ? HAP_PRODUCTS_DATA.products 
+        : (window.HAP_PRODUCTS_DATA?.products || []);
+      
+      const defaultMap = {};
+      sourceProducts.forEach(p => { defaultMap[p.id] = p.price; });
+
+      STATE.products.forEach(p => {
+        if (defaultMap[p.id] !== undefined) {
+          p.price = defaultMap[p.id];
+          p.mrp = defaultMap[p.id];
+        }
+      });
+
+      renderPriceManagerTable();
+      renderCatalog();
+      renderSpeedDial();
+      renderCart();
+      renderInventory();
+      alert('Product rates reset to default MRP values.');
     }
   });
 }
 
-function handleBarcodeScan(barcode) {
-  const clean = barcode.trim();
-  const product = STATE.products.find(p => p.barcode === clean || p.id === clean);
+function renderPriceManagerTable() {
+  const tbody = document.getElementById('priceManagerTableBody');
+  if (!tbody) return;
 
-  if (product) {
-    addItemToCart(product);
-  } else {
-    alert(`No item found for barcode: ${clean}`);
+  const search = (document.getElementById('priceManagerSearch')?.value || '').toLowerCase().trim().replace(/^#/, '');
+  const brand = document.getElementById('priceManagerBrandSelect')?.value || 'ALL';
+
+  let list = STATE.products;
+  if (brand !== 'ALL') {
+    list = list.filter(p => p.brand.toLowerCase() === brand.toLowerCase() || p.brandId === brand.toLowerCase());
   }
+  if (search) {
+    list = list.filter(p => 
+      p.name.toLowerCase().includes(search) || 
+      (p.code && p.code.toLowerCase().includes(search)) ||
+      p.category.toLowerCase().includes(search) ||
+      p.brand.toLowerCase().includes(search)
+    );
+  }
+
+  tbody.innerHTML = list.map(p => `
+    <tr>
+      <td><span class="chip-code-tag">#${p.code}</span></td>
+      <td><strong>${escapeHtml(p.name)}</strong></td>
+      <td><span style="font-size: 11px; color: var(--text-muted);">${escapeHtml(p.brand)} • ${escapeHtml(p.unit)}</span></td>
+      <td><span style="font-family: var(--font-mono); font-weight: 700;">₹${p.price.toFixed(2)}</span></td>
+      <td>
+        <input type="number" step="0.5" min="0" class="rate-edit-input" data-id="${p.id}" value="${p.price}">
+      </td>
+      <td>
+        <button class="save-single-rate-btn btn btn-sm btn-primary" data-id="${p.id}" title="Save this rate">Save</button>
+      </td>
+    </tr>
+  `).join('');
+
+  // Single rate save buttons
+  tbody.querySelectorAll('.save-single-rate-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id;
+      const row = btn.closest('tr');
+      const input = row?.querySelector('.rate-edit-input');
+      const newRate = parseFloat(input?.value);
+      if (!isNaN(newRate) && newRate >= 0) {
+        const prod = STATE.products.find(p => p.id === id);
+        if (prod) {
+          prod.price = newRate;
+          prod.mrp = newRate;
+          savePriceOverrides();
+
+          STATE.tabs.forEach(tab => {
+            const item = tab.items.find(i => i.product.id === id);
+            if (item) {
+              item.price = newRate;
+              item.total = item.qty * item.price;
+            }
+          });
+
+          renderCatalog();
+          renderSpeedDial();
+          renderCart();
+          renderInventory();
+          btn.textContent = 'Saved! ✓';
+          btn.classList.remove('btn-primary');
+          btn.classList.add('btn-success');
+          setTimeout(() => {
+            btn.textContent = 'Save';
+            btn.classList.remove('btn-success');
+            btn.classList.add('btn-primary');
+          }, 1200);
+        }
+      }
+    });
+  });
 }
 
 // ==========================================================================
@@ -1354,25 +1705,6 @@ function setupEventListeners() {
     setMobilePosMode('cart');
   });
 
-  // Barcode input
-  const barcodeInput = document.getElementById('barcodeInput');
-  const barcodeBtn = document.getElementById('barcodeEnterBtn');
-  if (barcodeInput && barcodeBtn) {
-    barcodeBtn.addEventListener('click', () => {
-      if (barcodeInput.value) {
-        handleBarcodeScan(barcodeInput.value);
-        barcodeInput.value = '';
-      }
-    });
-    barcodeInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        if (barcodeInput.value) {
-          handleBarcodeScan(barcodeInput.value);
-          barcodeInput.value = '';
-        }
-      }
-    });
-  }
 
   // Instant Search
   const searchInput = document.getElementById('searchInput');
@@ -1561,8 +1893,10 @@ function setupEventListeners() {
       return;
     }
 
+    const nextCode = String(STATE.products.length + 101);
     const newProd = {
       id: `custom_${Date.now()}`,
+      code: nextCode,
       barcode,
       name,
       brand,

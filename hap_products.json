@@ -49,7 +49,9 @@
       "unit": "120 ml",
       "taxRate": 5,
       "stock": 57,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1176-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1176-1.png",
+      "code": "101",
+      "isFastMoving": false
     },
     {
       "id": "arokya_full_cream_milk__200_ml",
@@ -65,7 +67,9 @@
       "unit": "200 ml",
       "taxRate": 5,
       "stock": 25,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1179-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1179-1.png",
+      "code": "102",
+      "isFastMoving": false
     },
     {
       "id": "arokya_full_cream_milk__250_ml",
@@ -81,7 +85,9 @@
       "unit": "250 ml",
       "taxRate": 5,
       "stock": 32,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1180-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1180-1.png",
+      "code": "103",
+      "isFastMoving": false
     },
     {
       "id": "arokya_full_cream_milk__350_ml",
@@ -97,7 +103,9 @@
       "unit": "350 ml",
       "taxRate": 5,
       "stock": 28,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1181-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1181-1.png",
+      "code": "104",
+      "isFastMoving": false
     },
     {
       "id": "arokya_full_cream_milk__500_ml",
@@ -113,7 +121,9 @@
       "unit": "500 ml",
       "taxRate": 5,
       "stock": 49,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1182-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1182-1.png",
+      "code": "105",
+      "isFastMoving": true
     },
     {
       "id": "arokya_full_cream_milk_1_l",
@@ -129,7 +139,9 @@
       "unit": "1 L",
       "taxRate": 5,
       "stock": 43,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1186-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1186-1.png",
+      "code": "106",
+      "isFastMoving": true
     },
     {
       "id": "arokya_full_cream_milk_2_l",
@@ -145,7 +157,9 @@
       "unit": "2 L",
       "taxRate": 5,
       "stock": 21,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1184-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1184-1.png",
+      "code": "107",
+      "isFastMoving": false
     },
     {
       "id": "arokya_full_cream_milk_5_5_l",
@@ -161,7 +175,9 @@
       "unit": "5.5 L",
       "taxRate": 5,
       "stock": 15,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1185-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1185-1.png",
+      "code": "108",
+      "isFastMoving": false
     },
     {
       "id": "arokya_full_cream_milk_1_5_l",
@@ -177,7 +193,9 @@
       "unit": "1.5 L",
       "taxRate": 5,
       "stock": 21,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1187-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1187-1.png",
+      "code": "109",
+      "isFastMoving": false
     },
     {
       "id": "arokya_standardized_milk_100_ml",
@@ -193,7 +211,9 @@
       "unit": "100 ml",
       "taxRate": 5,
       "stock": 42,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1232.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1232.png",
+      "code": "110",
+      "isFastMoving": false
     },
     {
       "id": "arokya_standardized_milk_140_ml",
@@ -209,7 +229,9 @@
       "unit": "140 ml",
       "taxRate": 5,
       "stock": 29,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1224.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1224.png",
+      "code": "111",
+      "isFastMoving": false
     },
     {
       "id": "arokya_standardized_milk_250_ml",
@@ -225,7 +247,9 @@
       "unit": "250 ml",
       "taxRate": 5,
       "stock": 22,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1225.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1225.png",
+      "code": "112",
+      "isFastMoving": false
     },
     {
       "id": "arokya_standardized_milk_500_ml",
@@ -241,7 +265,9 @@
       "unit": "500 ml",
       "taxRate": 5,
       "stock": 38,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1226.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1226.png",
+      "code": "113",
+      "isFastMoving": true
     },
     {
       "id": "arokya_standardized_milk_1_l",
@@ -257,7 +283,9 @@
       "unit": "1 L",
       "taxRate": 5,
       "stock": 19,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1227.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1227.png",
+      "code": "114",
+      "isFastMoving": true
     },
     {
       "id": "arokya_standardized_milk_5_5_l",
@@ -273,7 +301,9 @@
       "unit": "5.5 L",
       "taxRate": 5,
       "stock": 18,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1228.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1228.png",
+      "code": "115",
+      "isFastMoving": false
     },
     {
       "id": "arokya_toned_milk_180_ml",
@@ -289,7 +319,9 @@
       "unit": "180 ml",
       "taxRate": 5,
       "stock": 45,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1216-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1216-1.png",
+      "code": "116",
+      "isFastMoving": false
     },
     {
       "id": "arokya_toned_milk_250_ml",
@@ -305,7 +337,9 @@
       "unit": "250 ml",
       "taxRate": 5,
       "stock": 55,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1209-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1209-1.png",
+      "code": "117",
+      "isFastMoving": false
     },
     {
       "id": "arokya_toned_milk_500_ml",
@@ -321,7 +355,9 @@
       "unit": "500 ml",
       "taxRate": 5,
       "stock": 46,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1210-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1210-1.png",
+      "code": "118",
+      "isFastMoving": true
     },
     {
       "id": "arokya_toned_milk_1_l",
@@ -337,7 +373,9 @@
       "unit": "1 L",
       "taxRate": 5,
       "stock": 41,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1212-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1212-1.png",
+      "code": "119",
+      "isFastMoving": true
     },
     {
       "id": "arokya_toned_milk_5_5_l",
@@ -353,7 +391,9 @@
       "unit": "5.5 L",
       "taxRate": 5,
       "stock": 42,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1218-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1218-1.png",
+      "code": "120",
+      "isFastMoving": false
     },
     {
       "id": "arokya_double_toned_milk_500_ml",
@@ -369,7 +409,9 @@
       "unit": "500 ml",
       "taxRate": 5,
       "stock": 59,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1245.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1245.png",
+      "code": "121",
+      "isFastMoving": true
     },
     {
       "id": "arokya_curd_75_g",
@@ -385,7 +427,9 @@
       "unit": "75 g",
       "taxRate": 5,
       "stock": 50,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1248.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1248.png",
+      "code": "201",
+      "isFastMoving": false
     },
     {
       "id": "arokya_curd_85_g",
@@ -401,7 +445,9 @@
       "unit": "85 g",
       "taxRate": 5,
       "stock": 24,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1247.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1247.png",
+      "code": "202",
+      "isFastMoving": false
     },
     {
       "id": "arokya_curd_110_g",
@@ -417,7 +463,9 @@
       "unit": "110 g",
       "taxRate": 5,
       "stock": 26,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1247-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1247-1.png",
+      "code": "203",
+      "isFastMoving": false
     },
     {
       "id": "arokya_curd_200_g",
@@ -433,7 +481,9 @@
       "unit": "200 g",
       "taxRate": 5,
       "stock": 36,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1251.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1251.png",
+      "code": "204",
+      "isFastMoving": true
     },
     {
       "id": "arokya_curd_400_g",
@@ -449,7 +499,9 @@
       "unit": "400 g",
       "taxRate": 5,
       "stock": 25,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1250.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1250.png",
+      "code": "205",
+      "isFastMoving": false
     },
     {
       "id": "arokya_curd_500_g",
@@ -465,7 +517,9 @@
       "unit": "500 g",
       "taxRate": 5,
       "stock": 27,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1253.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1253.png",
+      "code": "206",
+      "isFastMoving": true
     },
     {
       "id": "arokya_curd_1_kg",
@@ -481,7 +535,9 @@
       "unit": "1 kg",
       "taxRate": 5,
       "stock": 20,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1252.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1252.png",
+      "code": "207",
+      "isFastMoving": false
     },
     {
       "id": "arokya_paneer_200_g",
@@ -497,7 +553,9 @@
       "unit": "200 g",
       "taxRate": 12,
       "stock": 33,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1266.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1266.png",
+      "code": "301",
+      "isFastMoving": true
     },
     {
       "id": "hatsun_cow_milk_500_ml",
@@ -513,7 +571,9 @@
       "unit": "500 ml",
       "taxRate": 5,
       "stock": 53,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-487.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-487.png",
+      "code": "122",
+      "isFastMoving": true
     },
     {
       "id": "hatsun_curd_50g_________________________________________________________________________________________________________________________________________________________________________________100_00________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________curd_50g_________________________________________________________________________________________________________________________________________________________________________________100_00________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________curd_50g_________________________________________________________________________________________________________________________________________________________________________________100_00________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________curd_50g_________________________________________________________________________________________________________________________________________________________________________________100_00________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________curd_50g_________________________________________________________________________________________________________________________________________________________________________________100_00________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________curd_50g_________________________________________________________________________________________________________________________________________________________________________________100_00_______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________paneer_200_g",
@@ -529,7 +589,9 @@
       "unit": "50g",
       "taxRate": 12,
       "stock": 33,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-445.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-445.png",
+      "code": "208",
+      "isFastMoving": true
     },
     {
       "id": "hatsun_yoghurt_sip___strawberry_banana",
@@ -545,7 +607,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 29,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-449.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-449.png",
+      "code": "209",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_yoghurt_sip___mango_passion_fruit",
@@ -561,7 +625,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 17,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-448.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-448.png",
+      "code": "210",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_yoghurt_shake___blueberry",
@@ -577,7 +643,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 15,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-451.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-451.png",
+      "code": "211",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_yoghurt_shake___mango",
@@ -593,7 +661,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 25,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-452.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-452.png",
+      "code": "212",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_yoghurt_shake___strawberry",
@@ -609,7 +679,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 17,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-454.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-454.png",
+      "code": "213",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_fruit_yoghurt___mixed_berry",
@@ -625,7 +697,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 57,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "214",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_fruit_yoghurt___rose___lychee",
@@ -641,7 +715,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 36,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "215",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_greek_yoghurt___fig___dates",
@@ -657,7 +733,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 47,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "216",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_greek_yoghurt___red_cherry",
@@ -673,7 +751,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 56,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "217",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_mango_lassi_140_ml",
@@ -689,7 +769,9 @@
       "unit": "140 ml",
       "taxRate": 5,
       "stock": 45,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-481.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-481.png",
+      "code": "218",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_malai_lassi_140_ml",
@@ -705,7 +787,9 @@
       "unit": "140 ml",
       "taxRate": 5,
       "stock": 19,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-480.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-480.png",
+      "code": "219",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_lassi_200_ml",
@@ -721,7 +805,9 @@
       "unit": "200 ml",
       "taxRate": 5,
       "stock": 46,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-482.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-482.png",
+      "code": "220",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_jeera_buttermilk__140_ml",
@@ -737,7 +823,9 @@
       "unit": "140 ml",
       "taxRate": 12,
       "stock": 18,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-491.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-491.png",
+      "code": "123",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_chhaas_400_ml",
@@ -753,7 +841,9 @@
       "unit": "400 ml",
       "taxRate": 5,
       "stock": 28,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-488.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-488.png",
+      "code": "124",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_chhaas_500_ml",
@@ -769,7 +859,9 @@
       "unit": "500 ml",
       "taxRate": 5,
       "stock": 42,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-489.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-489.png",
+      "code": "125",
+      "isFastMoving": true
     },
     {
       "id": "hatsun_spiced_buttermilk_200_ml",
@@ -785,7 +877,9 @@
       "unit": "200 ml",
       "taxRate": 12,
       "stock": 23,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-490.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-490.png",
+      "code": "126",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_breakfast_cream_100_g",
@@ -801,7 +895,9 @@
       "unit": "100 g",
       "taxRate": 5,
       "stock": 16,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-520.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-520.png",
+      "code": "302",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_fresh_cream_100_g",
@@ -817,7 +913,9 @@
       "unit": "100 g",
       "taxRate": 5,
       "stock": 51,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-520-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-520-1.png",
+      "code": "303",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_cooking_butter_100_g",
@@ -833,7 +931,9 @@
       "unit": "100 g",
       "taxRate": 12,
       "stock": 17,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-505.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-505.png",
+      "code": "304",
+      "isFastMoving": true
     },
     {
       "id": "hatsun_cooking_butter_200_g",
@@ -849,7 +949,9 @@
       "unit": "200 g",
       "taxRate": 12,
       "stock": 35,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-506.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-506.png",
+      "code": "305",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_cooking_butter_500_g",
@@ -865,7 +967,9 @@
       "unit": "500 g",
       "taxRate": 12,
       "stock": 53,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-504.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-504.png",
+      "code": "306",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_table_butter_10_g_chiplets",
@@ -881,7 +985,9 @@
       "unit": "10 g",
       "taxRate": 12,
       "stock": 51,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-501.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-501.png",
+      "code": "307",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_table_butter_100_g",
@@ -897,7 +1003,9 @@
       "unit": "100 g",
       "taxRate": 12,
       "stock": 43,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-503.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-503.png",
+      "code": "308",
+      "isFastMoving": true
     },
     {
       "id": "hatsun_ghee_500_ml",
@@ -913,7 +1021,9 @@
       "unit": "500 ml",
       "taxRate": 12,
       "stock": 55,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-528.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-528.png",
+      "code": "309",
+      "isFastMoving": true
     },
     {
       "id": "hatsun_ghee_1_l",
@@ -929,7 +1039,9 @@
       "unit": "1 L",
       "taxRate": 12,
       "stock": 34,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-528-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-528-1.png",
+      "code": "310",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_ghee_5_l",
@@ -945,7 +1057,9 @@
       "unit": "5 L",
       "taxRate": 12,
       "stock": 50,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-529.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-529.png",
+      "code": "311",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_ghee_16_5_l",
@@ -961,7 +1075,9 @@
       "unit": "16.5 L",
       "taxRate": 12,
       "stock": 36,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-530.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-530.png",
+      "code": "312",
+      "isFastMoving": false
     },
     {
       "id": "hatsun_cheese_spread_50_g",
@@ -977,7 +1093,9 @@
       "unit": "50 g",
       "taxRate": 5,
       "stock": 46,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-519.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-519.png",
+      "code": "313",
+      "isFastMoving": false
     },
     {
       "id": "arun_slice_it___butterscotch___pistachio_750_ml",
@@ -993,7 +1111,9 @@
       "unit": "750 ml",
       "taxRate": 12,
       "stock": 18,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1432.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1432.png",
+      "code": "314",
+      "isFastMoving": false
     },
     {
       "id": "arun_slice_it___mango____lychee_750_ml",
@@ -1009,7 +1129,9 @@
       "unit": "750 ml",
       "taxRate": 5,
       "stock": 37,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1433-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1433-1.png",
+      "code": "601",
+      "isFastMoving": true
     },
     {
       "id": "arun_slice_it___belgian_sea_salt_caramel_750_ml",
@@ -1025,7 +1147,9 @@
       "unit": "750 ml",
       "taxRate": 5,
       "stock": 35,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1434-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1434-1.png",
+      "code": "602",
+      "isFastMoving": false
     },
     {
       "id": "arun_slice_it___vanilla_berry_choco_cheer_800_ml",
@@ -1041,7 +1165,9 @@
       "unit": "800 ml",
       "taxRate": 5,
       "stock": 34,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1435-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1435-1.png",
+      "code": "603",
+      "isFastMoving": false
     },
     {
       "id": "arun_slice_it___blackcurrant__strawberry___mango_700_ml",
@@ -1057,7 +1183,9 @@
       "unit": "700 ml",
       "taxRate": 5,
       "stock": 30,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1436-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1436-1.png",
+      "code": "604",
+      "isFastMoving": true
     },
     {
       "id": "arun_slice_it___cotton_candy___salted_caramel_700ml",
@@ -1073,7 +1201,9 @@
       "unit": "700ml",
       "taxRate": 5,
       "stock": 39,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1437.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1437.png",
+      "code": "605",
+      "isFastMoving": false
     },
     {
       "id": "arun_slice_it___chocolate__vanilla___strawberry_900_ml",
@@ -1089,7 +1219,9 @@
       "unit": "900 ml",
       "taxRate": 18,
       "stock": 55,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1438.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1438.png",
+      "code": "606",
+      "isFastMoving": false
     },
     {
       "id": "arun_bites___choco___red_velvet",
@@ -1105,7 +1237,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 47,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1449.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1449.png",
+      "code": "401",
+      "isFastMoving": true
     },
     {
       "id": "arun_bites___choco___toffee",
@@ -1121,7 +1255,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 40,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1450.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1450.png",
+      "code": "402",
+      "isFastMoving": true
     },
     {
       "id": "arun_bites___cotton_candy",
@@ -1137,7 +1273,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 24,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1451-1.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1451-1.png",
+      "code": "403",
+      "isFastMoving": false
     },
     {
       "id": "arun_bites___raspberry",
@@ -1153,7 +1291,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 41,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1452.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1452.png",
+      "code": "404",
+      "isFastMoving": false
     },
     {
       "id": "arun_bites___choco____lychee",
@@ -1169,7 +1309,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 21,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1453.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1453.png",
+      "code": "405",
+      "isFastMoving": false
     },
     {
       "id": "arun_bites___vanilla",
@@ -1185,7 +1327,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 44,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1454.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1454.png",
+      "code": "406",
+      "isFastMoving": false
     },
     {
       "id": "arun_sandwich____butterscotch",
@@ -1201,7 +1345,9 @@
       "unit": "Unit",
       "taxRate": 12,
       "stock": 57,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1455.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1455.png",
+      "code": "315",
+      "isFastMoving": false
     },
     {
       "id": "arun_sandwich___cookie___cream",
@@ -1217,7 +1363,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 55,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1456.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1456.png",
+      "code": "316",
+      "isFastMoving": false
     },
     {
       "id": "arun_sandwich___caramel",
@@ -1233,7 +1381,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 28,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1457.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1457.png",
+      "code": "407",
+      "isFastMoving": false
     },
     {
       "id": "arun_sandwich___tiramisu",
@@ -1249,7 +1399,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 28,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1458.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1458.png",
+      "code": "408",
+      "isFastMoving": false
     },
     {
       "id": "arun_mini_ball___vanilla",
@@ -1265,7 +1417,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 59,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "409",
+      "isFastMoving": false
     },
     {
       "id": "arun_mini_ball___chocolate",
@@ -1281,7 +1435,9 @@
       "unit": "Unit",
       "taxRate": 18,
       "stock": 43,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "410",
+      "isFastMoving": false
     },
     {
       "id": "arun_push_up____bubble_gum",
@@ -1297,7 +1453,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 58,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "411",
+      "isFastMoving": false
     },
     {
       "id": "arun_push_up___cotton_candy",
@@ -1313,7 +1471,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 43,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "412",
+      "isFastMoving": false
     },
     {
       "id": "arun_donut____belgian_chocolate",
@@ -1329,7 +1489,9 @@
       "unit": "Unit",
       "taxRate": 18,
       "stock": 51,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "413",
+      "isFastMoving": false
     },
     {
       "id": "arun_donut___cream_n_cookie",
@@ -1345,7 +1507,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 53,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "317",
+      "isFastMoving": false
     },
     {
       "id": "arun_full_cassata_ball",
@@ -1361,7 +1525,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 20,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "607",
+      "isFastMoving": false
     },
     {
       "id": "arun_cassata_slice",
@@ -1377,7 +1543,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 20,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "608",
+      "isFastMoving": false
     },
     {
       "id": "arun_cake_slice___vanilla",
@@ -1393,7 +1561,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 22,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "701",
+      "isFastMoving": false
     },
     {
       "id": "arun_cookie_delight____cream___cookies",
@@ -1409,7 +1579,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 54,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1492.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1492.png",
+      "code": "318",
+      "isFastMoving": false
     },
     {
       "id": "arun_chocobar___vanilla",
@@ -1425,7 +1597,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 15,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1493.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1493.png",
+      "code": "414",
+      "isFastMoving": false
     },
     {
       "id": "arun_yummy_bears___blackcurrant",
@@ -1441,7 +1615,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 55,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1494.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1494.png",
+      "code": "415",
+      "isFastMoving": false
     },
     {
       "id": "arun_fun_wheel____vanilla___chocolate",
@@ -1457,7 +1633,9 @@
       "unit": "Unit",
       "taxRate": 18,
       "stock": 45,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1495.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1495.png",
+      "code": "416",
+      "isFastMoving": false
     },
     {
       "id": "arun_jolly_train___chocolate___butterscotch",
@@ -1473,7 +1651,9 @@
       "unit": "Unit",
       "taxRate": 18,
       "stock": 50,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1496.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1496.png",
+      "code": "319",
+      "isFastMoving": false
     },
     {
       "id": "arun_smiley___chocolate___butterscotch",
@@ -1489,7 +1669,9 @@
       "unit": "Unit",
       "taxRate": 18,
       "stock": 34,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1497.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1497.png",
+      "code": "320",
+      "isFastMoving": false
     },
     {
       "id": "arun_berry_hearts___strawberry",
@@ -1505,7 +1687,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 51,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1498.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1498.png",
+      "code": "417",
+      "isFastMoving": false
     },
     {
       "id": "arun_little_love___berry",
@@ -1521,7 +1705,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 50,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1499.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1499.png",
+      "code": "418",
+      "isFastMoving": false
     },
     {
       "id": "arun_neapolitan___vanilla__strawberry___chocolate",
@@ -1537,7 +1723,9 @@
       "unit": "Unit",
       "taxRate": 18,
       "stock": 53,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1500.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1500.png",
+      "code": "419",
+      "isFastMoving": false
     },
     {
       "id": "arun_bazooka___pineapple____jamun_ice_candy",
@@ -1553,7 +1741,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 18,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1501.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1501.png",
+      "code": "420",
+      "isFastMoving": false
     },
     {
       "id": "arun_2_in_1___strawberry___blackcurrant",
@@ -1569,7 +1759,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 42,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "421",
+      "isFastMoving": false
     },
     {
       "id": "arun_2_in_1___mango____vanilla",
@@ -1585,7 +1777,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 37,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "422",
+      "isFastMoving": false
     },
     {
       "id": "arun_likstick_ice_candy___grape",
@@ -1601,7 +1795,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 31,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "423",
+      "isFastMoving": false
     },
     {
       "id": "arun_likstick_ice_candy___orange",
@@ -1617,7 +1813,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 34,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "424",
+      "isFastMoving": false
     },
     {
       "id": "arun_likstick_ice_candy___apple",
@@ -1633,7 +1831,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 19,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "425",
+      "isFastMoving": false
     },
     {
       "id": "arun_likstick_ice_candy___mango",
@@ -1649,7 +1849,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 41,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "426",
+      "isFastMoving": false
     },
     {
       "id": "arun_triples___orange__mint___lemon",
@@ -1665,7 +1867,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 49,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "427",
+      "isFastMoving": false
     },
     {
       "id": "arun_trio___raspberry__vanilla___mango",
@@ -1681,7 +1885,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 49,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "428",
+      "isFastMoving": false
     },
     {
       "id": "arun_merry_cap___vanilla___cherry",
@@ -1697,7 +1903,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 32,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "429",
+      "isFastMoving": false
     },
     {
       "id": "arun_merry_creme___pista",
@@ -1713,7 +1921,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 49,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "430",
+      "isFastMoving": false
     },
     {
       "id": "arun_triago___vanilla",
@@ -1729,7 +1939,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 35,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "431",
+      "isFastMoving": false
     },
     {
       "id": "arun_popitos___kaccha_mango",
@@ -1745,7 +1957,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 59,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "432",
+      "isFastMoving": false
     },
     {
       "id": "arun_popitos___apple",
@@ -1761,7 +1975,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 40,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "433",
+      "isFastMoving": false
     },
     {
       "id": "arun_spiral___pineapple__vanilla___wildberry",
@@ -1777,7 +1993,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 31,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "434",
+      "isFastMoving": false
     },
     {
       "id": "arun_spiral___mango___litchi",
@@ -1793,7 +2011,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 33,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "435",
+      "isFastMoving": false
     },
     {
       "id": "arun_whale___butterscotch____cotton_candy",
@@ -1809,7 +2029,9 @@
       "unit": "Unit",
       "taxRate": 12,
       "stock": 55,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "321",
+      "isFastMoving": false
     },
     {
       "id": "arun_watermelon___pista___watermelon",
@@ -1825,7 +2047,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 44,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "436",
+      "isFastMoving": false
     },
     {
       "id": "arun_ibar_mini____belgian_chocolate",
@@ -1841,7 +2065,9 @@
       "unit": "Unit",
       "taxRate": 18,
       "stock": 40,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1381.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1381.png",
+      "code": "437",
+      "isFastMoving": false
     },
     {
       "id": "arun_ibar_mini___mango_delight",
@@ -1857,7 +2083,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 39,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1379.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1379.png",
+      "code": "438",
+      "isFastMoving": false
     },
     {
       "id": "arun_ibar_mini____raspberry_ripple",
@@ -1873,7 +2101,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 34,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1380.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1380.png",
+      "code": "439",
+      "isFastMoving": false
     },
     {
       "id": "arun_ibar___belgian_chocolate",
@@ -1889,7 +2119,9 @@
       "unit": "Unit",
       "taxRate": 18,
       "stock": 37,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1374.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1374.png",
+      "code": "440",
+      "isFastMoving": false
     },
     {
       "id": "arun_ibar___almond_crunch",
@@ -1905,7 +2137,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 58,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1375.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1375.png",
+      "code": "441",
+      "isFastMoving": false
     },
     {
       "id": "arun_ibar___classic_vanilla",
@@ -1921,7 +2155,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 31,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1376.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1376.png",
+      "code": "221",
+      "isFastMoving": false
     },
     {
       "id": "arun_ibar___double__chocolate_crunch",
@@ -1937,7 +2173,9 @@
       "unit": "Unit",
       "taxRate": 18,
       "stock": 28,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1378.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1378.png",
+      "code": "442",
+      "isFastMoving": false
     },
     {
       "id": "arun_ibar___cotton__candy",
@@ -1953,7 +2191,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 44,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1377.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1377.png",
+      "code": "443",
+      "isFastMoving": false
     },
     {
       "id": "arun_cup___milk_fantasy__40_ml",
@@ -1969,7 +2209,9 @@
       "unit": "40 ml",
       "taxRate": 5,
       "stock": 59,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1565.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1565.png",
+      "code": "127",
+      "isFastMoving": false
     },
     {
       "id": "arun_cup___fruit_cr_me_40_ml",
@@ -1985,7 +2227,9 @@
       "unit": "40 ml",
       "taxRate": 5,
       "stock": 37,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1564.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1564.png",
+      "code": "501",
+      "isFastMoving": false
     },
     {
       "id": "arun_cup___strawberry_60_ml",
@@ -2001,7 +2245,9 @@
       "unit": "60 ml",
       "taxRate": 5,
       "stock": 15,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1563.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1563.png",
+      "code": "502",
+      "isFastMoving": false
     },
     {
       "id": "arun_cup___vanilla_60_ml",
@@ -2017,7 +2263,9 @@
       "unit": "60 ml",
       "taxRate": 5,
       "stock": 25,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1562.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1562.png",
+      "code": "503",
+      "isFastMoving": false
     },
     {
       "id": "arun_cup___chocolate__85_ml",
@@ -2033,7 +2281,9 @@
       "unit": "85 ml",
       "taxRate": 18,
       "stock": 26,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1561.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1561.png",
+      "code": "504",
+      "isFastMoving": false
     },
     {
       "id": "arun_cup___vanilla_85_ml",
@@ -2049,7 +2299,9 @@
       "unit": "85 ml",
       "taxRate": 5,
       "stock": 26,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1560.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1560.png",
+      "code": "505",
+      "isFastMoving": false
     },
     {
       "id": "arun_cup___blackcurrant__125_ml",
@@ -2065,7 +2317,9 @@
       "unit": "125 ml",
       "taxRate": 5,
       "stock": 19,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1559.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1559.png",
+      "code": "506",
+      "isFastMoving": false
     },
     {
       "id": "arun_cup___vanilla__125_ml",
@@ -2081,7 +2335,9 @@
       "unit": "125 ml",
       "taxRate": 5,
       "stock": 44,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1558.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1558.png",
+      "code": "507",
+      "isFastMoving": false
     },
     {
       "id": "arun_cup___italian_delight__125_ml",
@@ -2097,7 +2353,9 @@
       "unit": "125 ml",
       "taxRate": 5,
       "stock": 45,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1557.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1557.png",
+      "code": "508",
+      "isFastMoving": false
     },
     {
       "id": "arun_cup___butterscotch__125_ml",
@@ -2113,7 +2371,9 @@
       "unit": "125 ml",
       "taxRate": 12,
       "stock": 32,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1556.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1556.png",
+      "code": "322",
+      "isFastMoving": false
     },
     {
       "id": "arun_cup___kulfi_maharaj_125_ml",
@@ -2129,7 +2389,9 @@
       "unit": "125 ml",
       "taxRate": 5,
       "stock": 30,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "509",
+      "isFastMoving": true
     },
     {
       "id": "arun_cup___kesar_pista_125_ml",
@@ -2145,7 +2407,9 @@
       "unit": "125 ml",
       "taxRate": 5,
       "stock": 29,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "510",
+      "isFastMoving": false
     },
     {
       "id": "arun_cup___mango_125_ml",
@@ -2161,7 +2425,9 @@
       "unit": "125 ml",
       "taxRate": 5,
       "stock": 42,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "511",
+      "isFastMoving": false
     },
     {
       "id": "arun_butterscotch_250_ml",
@@ -2177,7 +2443,9 @@
       "unit": "250 ml",
       "taxRate": 12,
       "stock": 55,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1635.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1635.png",
+      "code": "323",
+      "isFastMoving": false
     },
     {
       "id": "arun_jackfruit_250_ml",
@@ -2193,7 +2461,9 @@
       "unit": "250 ml",
       "taxRate": 5,
       "stock": 25,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1634.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1634.png",
+      "code": "609",
+      "isFastMoving": false
     },
     {
       "id": "arun_vanilla_250_ml",
@@ -2209,7 +2479,9 @@
       "unit": "250 ml",
       "taxRate": 5,
       "stock": 20,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1632.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1632.png",
+      "code": "610",
+      "isFastMoving": false
     },
     {
       "id": "arun_classic_kaju__kishmish_250_ml",
@@ -2225,7 +2497,9 @@
       "unit": "250 ml",
       "taxRate": 5,
       "stock": 43,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1627.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1627.png",
+      "code": "222",
+      "isFastMoving": false
     },
     {
       "id": "arun_vanilla___blackcurrant_dual_500_ml",
@@ -2241,7 +2515,9 @@
       "unit": "500 ml",
       "taxRate": 5,
       "stock": 49,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1629.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1629.png",
+      "code": "611",
+      "isFastMoving": false
     },
     {
       "id": "arun_butterscotch___chocolate_dual_500_ml",
@@ -2257,7 +2533,9 @@
       "unit": "500 ml",
       "taxRate": 18,
       "stock": 58,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1624.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1624.png",
+      "code": "324",
+      "isFastMoving": false
     },
     {
       "id": "arun_rajbhog_500_ml",
@@ -2273,7 +2551,9 @@
       "unit": "500 ml",
       "taxRate": 5,
       "stock": 56,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1622.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1622.png",
+      "code": "612",
+      "isFastMoving": false
     },
     {
       "id": "arun_pista_500_ml",
@@ -2289,7 +2569,9 @@
       "unit": "500 ml",
       "taxRate": 5,
       "stock": 34,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1620.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1620.png",
+      "code": "613",
+      "isFastMoving": false
     },
     {
       "id": "arun_gajar_ka_halwa_500_ml",
@@ -2305,7 +2587,9 @@
       "unit": "500 ml",
       "taxRate": 5,
       "stock": 30,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1618.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1618.png",
+      "code": "614",
+      "isFastMoving": false
     },
     {
       "id": "arun_butterscotch_500_ml",
@@ -2321,7 +2605,9 @@
       "unit": "500 ml",
       "taxRate": 12,
       "stock": 40,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1617.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1617.png",
+      "code": "325",
+      "isFastMoving": false
     },
     {
       "id": "arun_mango_500_ml",
@@ -2337,7 +2623,9 @@
       "unit": "500 ml",
       "taxRate": 5,
       "stock": 25,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "615",
+      "isFastMoving": false
     },
     {
       "id": "arun_chocolate_500_ml",
@@ -2353,7 +2641,9 @@
       "unit": "500 ml",
       "taxRate": 18,
       "stock": 53,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "616",
+      "isFastMoving": false
     },
     {
       "id": "arun_cookies_n_cream__500_ml",
@@ -2369,7 +2659,9 @@
       "unit": "500 ml",
       "taxRate": 5,
       "stock": 27,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "326",
+      "isFastMoving": false
     },
     {
       "id": "arun_strawberry_500_ml",
@@ -2385,7 +2677,9 @@
       "unit": "500 ml",
       "taxRate": 5,
       "stock": 39,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "617",
+      "isFastMoving": false
     },
     {
       "id": "arun_vanilla_500_ml",
@@ -2401,7 +2695,9 @@
       "unit": "500 ml",
       "taxRate": 5,
       "stock": 36,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "618",
+      "isFastMoving": false
     },
     {
       "id": "arun_tender_coconut_500_ml",
@@ -2417,7 +2713,9 @@
       "unit": "500 ml",
       "taxRate": 5,
       "stock": 26,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "619",
+      "isFastMoving": false
     },
     {
       "id": "arun_fruit_falooda__500_ml",
@@ -2433,7 +2731,9 @@
       "unit": "500 ml",
       "taxRate": 5,
       "stock": 35,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "620",
+      "isFastMoving": false
     },
     {
       "id": "arun_dark_chocolate_1000_ml",
@@ -2449,7 +2749,9 @@
       "unit": "1000 ml",
       "taxRate": 18,
       "stock": 48,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "621",
+      "isFastMoving": false
     },
     {
       "id": "arun_butterscotch_1000_ml",
@@ -2465,7 +2767,9 @@
       "unit": "1000 ml",
       "taxRate": 12,
       "stock": 52,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "327",
+      "isFastMoving": false
     },
     {
       "id": "arun_almond_crisp_1000_ml",
@@ -2481,7 +2785,9 @@
       "unit": "1000 ml",
       "taxRate": 5,
       "stock": 30,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "622",
+      "isFastMoving": false
     },
     {
       "id": "arun_blueberry____cheese_duet_1000_ml",
@@ -2497,7 +2803,9 @@
       "unit": "1000 ml",
       "taxRate": 5,
       "stock": 33,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "328",
+      "isFastMoving": false
     },
     {
       "id": "arun_italian_delight__1000_ml",
@@ -2513,7 +2821,9 @@
       "unit": "1000 ml",
       "taxRate": 5,
       "stock": 26,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "623",
+      "isFastMoving": false
     },
     {
       "id": "arun_vanilla_1000_ml",
@@ -2529,7 +2839,9 @@
       "unit": "1000 ml",
       "taxRate": 5,
       "stock": 28,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "624",
+      "isFastMoving": false
     },
     {
       "id": "arun_strawberry_blast_1000_ml",
@@ -2545,7 +2857,9 @@
       "unit": "1000 ml",
       "taxRate": 5,
       "stock": 51,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "625",
+      "isFastMoving": false
     },
     {
       "id": "arun_gulab_jamun_1000_ml",
@@ -2561,7 +2875,9 @@
       "unit": "1000 ml",
       "taxRate": 5,
       "stock": 55,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "626",
+      "isFastMoving": false
     },
     {
       "id": "arun_red_velvet___salted__caramel_duet_1000_ml",
@@ -2577,7 +2893,9 @@
       "unit": "1000 ml",
       "taxRate": 5,
       "stock": 55,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "627",
+      "isFastMoving": false
     },
     {
       "id": "arun_icone_mini___mango",
@@ -2593,7 +2911,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 36,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1394.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1394.png",
+      "code": "512",
+      "isFastMoving": true
     },
     {
       "id": "arun_icone_mini___toffee",
@@ -2609,7 +2929,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 27,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1395.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1395.png",
+      "code": "513",
+      "isFastMoving": true
     },
     {
       "id": "arun_icone___caribbean_almond_50_ml",
@@ -2625,7 +2947,9 @@
       "unit": "50 ml",
       "taxRate": 5,
       "stock": 15,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1396.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1396.png",
+      "code": "514",
+      "isFastMoving": true
     },
     {
       "id": "arun_icone___chocolate_50_ml",
@@ -2641,7 +2965,9 @@
       "unit": "50 ml",
       "taxRate": 18,
       "stock": 59,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1397.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1397.png",
+      "code": "515",
+      "isFastMoving": true
     },
     {
       "id": "arun_icone___cotton_candy_50_ml",
@@ -2657,7 +2983,9 @@
       "unit": "50 ml",
       "taxRate": 5,
       "stock": 39,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1398.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1398.png",
+      "code": "516",
+      "isFastMoving": true
     },
     {
       "id": "arun_icone____vanilla_50_ml",
@@ -2673,7 +3001,9 @@
       "unit": "50 ml",
       "taxRate": 5,
       "stock": 43,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1399.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1399.png",
+      "code": "517",
+      "isFastMoving": true
     },
     {
       "id": "arun_icone___kesar__pista_50_ml",
@@ -2689,7 +3019,9 @@
       "unit": "50 ml",
       "taxRate": 5,
       "stock": 18,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1400.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1400.png",
+      "code": "518",
+      "isFastMoving": true
     },
     {
       "id": "arun_icone___raspberry_chocolate_truffle__50ml",
@@ -2705,7 +3037,9 @@
       "unit": "50ml",
       "taxRate": 18,
       "stock": 45,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1401.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1401.png",
+      "code": "519",
+      "isFastMoving": true
     },
     {
       "id": "arun_icone___belgian_chocolate_100_ml",
@@ -2721,7 +3055,9 @@
       "unit": "100 ml",
       "taxRate": 18,
       "stock": 42,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1402.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1402.png",
+      "code": "520",
+      "isFastMoving": true
     },
     {
       "id": "arun_icone___berry_vanilla_100_ml",
@@ -2737,7 +3073,9 @@
       "unit": "100 ml",
       "taxRate": 5,
       "stock": 45,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1404.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1404.png",
+      "code": "521",
+      "isFastMoving": true
     },
     {
       "id": "arun_icone___red_velvet_100_ml",
@@ -2753,7 +3091,9 @@
       "unit": "100 ml",
       "taxRate": 5,
       "stock": 59,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "522",
+      "isFastMoving": true
     },
     {
       "id": "arun_icone___vanilla_100_ml",
@@ -2769,7 +3109,9 @@
       "unit": "100 ml",
       "taxRate": 5,
       "stock": 37,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "523",
+      "isFastMoving": true
     },
     {
       "id": "arun_icone___blackcurrant__100_ml",
@@ -2785,7 +3127,9 @@
       "unit": "100 ml",
       "taxRate": 5,
       "stock": 57,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "524",
+      "isFastMoving": true
     },
     {
       "id": "arun_icone___butterscotch_100_ml",
@@ -2801,7 +3145,9 @@
       "unit": "100 ml",
       "taxRate": 12,
       "stock": 59,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "329",
+      "isFastMoving": false
     },
     {
       "id": "arun_icone___strawberry_cheesecake_100_ml",
@@ -2817,7 +3163,9 @@
       "unit": "100 ml",
       "taxRate": 5,
       "stock": 34,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "330",
+      "isFastMoving": false
     },
     {
       "id": "arun_ice_cream_shake___chocolate",
@@ -2833,7 +3181,9 @@
       "unit": "Unit",
       "taxRate": 18,
       "stock": 53,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1647.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1647.png",
+      "code": "331",
+      "isFastMoving": false
     },
     {
       "id": "arun_ice_cream_shake____cotton_candy",
@@ -2849,7 +3199,9 @@
       "unit": "Unit",
       "taxRate": 18,
       "stock": 27,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1648.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1648.png",
+      "code": "332",
+      "isFastMoving": false
     },
     {
       "id": "arun_ice_cream_shake___strawberry",
@@ -2865,7 +3217,9 @@
       "unit": "Unit",
       "taxRate": 18,
       "stock": 16,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1649.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1649.png",
+      "code": "333",
+      "isFastMoving": false
     },
     {
       "id": "arun_ice_cream_shake____mango",
@@ -2881,7 +3235,9 @@
       "unit": "Unit",
       "taxRate": 18,
       "stock": 19,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1650.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1650.png",
+      "code": "334",
+      "isFastMoving": false
     },
     {
       "id": "arun_kulfi_king",
@@ -2897,7 +3253,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 54,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1662.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1662.png",
+      "code": "525",
+      "isFastMoving": true
     },
     {
       "id": "arun_kulfi___rabdi",
@@ -2913,7 +3271,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 38,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1661.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1661.png",
+      "code": "526",
+      "isFastMoving": true
     },
     {
       "id": "arun_kulfi___malai",
@@ -2929,7 +3289,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 50,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1660.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1660.png",
+      "code": "527",
+      "isFastMoving": true
     },
     {
       "id": "arun_kulfi___rose_gulkand",
@@ -2945,7 +3307,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 56,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1659.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1659.png",
+      "code": "528",
+      "isFastMoving": true
     },
     {
       "id": "arun_kulfi___dry_fruits",
@@ -2961,7 +3325,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 20,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1658.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1658.png",
+      "code": "529",
+      "isFastMoving": true
     },
     {
       "id": "hap-cake_almond_treat_700_g",
@@ -2977,7 +3343,9 @@
       "unit": "700 g",
       "taxRate": 5,
       "stock": 18,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1301.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1301.png",
+      "code": "335",
+      "isFastMoving": false
     },
     {
       "id": "hap-cake_blackcurrant_700_g",
@@ -2993,7 +3361,9 @@
       "unit": "700 g",
       "taxRate": 5,
       "stock": 37,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1302.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1302.png",
+      "code": "336",
+      "isFastMoving": false
     },
     {
       "id": "hap-cake_butterscotch_blast_700_g",
@@ -3009,7 +3379,9 @@
       "unit": "700 g",
       "taxRate": 12,
       "stock": 30,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1303.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1303.png",
+      "code": "337",
+      "isFastMoving": false
     },
     {
       "id": "hap-cake_bubble_cotton_crush_700_g",
@@ -3025,7 +3397,9 @@
       "unit": "700 g",
       "taxRate": 5,
       "stock": 41,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1304.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1304.png",
+      "code": "338",
+      "isFastMoving": false
     },
     {
       "id": "hap-cake_cookie_n_cream_700_g",
@@ -3041,7 +3415,9 @@
       "unit": "700 g",
       "taxRate": 5,
       "stock": 25,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1305.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1305.png",
+      "code": "339",
+      "isFastMoving": false
     },
     {
       "id": "hap-cake_rich_chocolate_700_g",
@@ -3057,7 +3433,9 @@
       "unit": "700 g",
       "taxRate": 18,
       "stock": 56,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1306.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1306.png",
+      "code": "340",
+      "isFastMoving": false
     },
     {
       "id": "hap-cake_mango_raspberry_burst_700_g",
@@ -3073,7 +3451,9 @@
       "unit": "700 g",
       "taxRate": 5,
       "stock": 53,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1307.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1307.png",
+      "code": "341",
+      "isFastMoving": false
     },
     {
       "id": "hap-cake_rajbhog_700_g",
@@ -3089,7 +3469,9 @@
       "unit": "700 g",
       "taxRate": 5,
       "stock": 57,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1308.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1308.png",
+      "code": "342",
+      "isFastMoving": false
     },
     {
       "id": "hap-cake_fruit_bonanza_700_g",
@@ -3105,7 +3487,9 @@
       "unit": "700 g",
       "taxRate": 5,
       "stock": 45,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1309.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1309.png",
+      "code": "343",
+      "isFastMoving": false
     },
     {
       "id": "hap-cake_vanilla_dry_fruit_crumble_700_g",
@@ -3121,7 +3505,9 @@
       "unit": "700 g",
       "taxRate": 5,
       "stock": 48,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1310.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1310.png",
+      "code": "344",
+      "isFastMoving": false
     },
     {
       "id": "hap-cake_gajar_halwa_classic_700g",
@@ -3137,7 +3523,9 @@
       "unit": "700g",
       "taxRate": 5,
       "stock": 39,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png",
+      "code": "223",
+      "isFastMoving": false
     },
     {
       "id": "hanobar_mango_creme_milk",
@@ -3153,7 +3541,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 52,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1280.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1280.png",
+      "code": "128",
+      "isFastMoving": false
     },
     {
       "id": "hanobar_mint_creme_dark",
@@ -3169,7 +3559,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 38,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1279.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1279.png",
+      "code": "444",
+      "isFastMoving": false
     },
     {
       "id": "hanobar_penuche_creme_milk",
@@ -3185,7 +3577,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 36,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1278.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1278.png",
+      "code": "129",
+      "isFastMoving": false
     },
     {
       "id": "hanobar_butterscotch_creme_milk",
@@ -3201,7 +3595,9 @@
       "unit": "Unit",
       "taxRate": 12,
       "stock": 32,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1285.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1285.png",
+      "code": "130",
+      "isFastMoving": false
     },
     {
       "id": "hanobar_tiramisu_creme_dark",
@@ -3217,7 +3613,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 22,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1286.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1286.png",
+      "code": "445",
+      "isFastMoving": false
     },
     {
       "id": "hanobar_roasted_hazelnut_milk",
@@ -3233,7 +3631,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 23,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1287.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1287.png",
+      "code": "131",
+      "isFastMoving": false
     },
     {
       "id": "hanobar_caramel_cookie_crumble_milk",
@@ -3249,7 +3649,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 33,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1273.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1273.png",
+      "code": "132",
+      "isFastMoving": false
     },
     {
       "id": "hanobar_cranberry___almond_milk",
@@ -3265,7 +3667,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 58,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1270.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1270.png",
+      "code": "133",
+      "isFastMoving": false
     },
     {
       "id": "hanobar_crunchy_caramel_dark",
@@ -3281,7 +3685,9 @@
       "unit": "Unit",
       "taxRate": 5,
       "stock": 42,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1268.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1268.png",
+      "code": "446",
+      "isFastMoving": false
     },
     {
       "id": "dako_dark_chocolate_rolls_25_g",
@@ -3297,7 +3703,9 @@
       "unit": "25 g",
       "taxRate": 18,
       "stock": 36,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1330.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1330.png",
+      "code": "901",
+      "isFastMoving": true
     },
     {
       "id": "dako_roasted_mixed_nuts_50_g",
@@ -3313,7 +3721,9 @@
       "unit": "50 g",
       "taxRate": 5,
       "stock": 47,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1325.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1325.png",
+      "code": "902",
+      "isFastMoving": false
     },
     {
       "id": "dako_almond_brittle_50_g",
@@ -3329,7 +3739,9 @@
       "unit": "50 g",
       "taxRate": 5,
       "stock": 55,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1326.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1326.png",
+      "code": "903",
+      "isFastMoving": false
     },
     {
       "id": "dako_white_choco_glazed_walnuts_50_g",
@@ -3345,7 +3757,9 @@
       "unit": "50 g",
       "taxRate": 5,
       "stock": 50,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1331.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1331.png",
+      "code": "904",
+      "isFastMoving": false
     },
     {
       "id": "dako_crunchy_caramelized_almonds_50_g",
@@ -3361,7 +3775,9 @@
       "unit": "50 g",
       "taxRate": 5,
       "stock": 39,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1329.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1329.png",
+      "code": "905",
+      "isFastMoving": false
     },
     {
       "id": "dako_fig_fruit_spread_100_g",
@@ -3377,7 +3793,9 @@
       "unit": "100 g",
       "taxRate": 5,
       "stock": 51,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1324.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1324.png",
+      "code": "906",
+      "isFastMoving": false
     },
     {
       "id": "dako_choco_spread__100_g",
@@ -3393,7 +3811,9 @@
       "unit": "100 g",
       "taxRate": 5,
       "stock": 24,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1328.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1328.png",
+      "code": "907",
+      "isFastMoving": false
     },
     {
       "id": "dako_choco_fudge_sauce_100_g",
@@ -3409,7 +3829,9 @@
       "unit": "100 g",
       "taxRate": 5,
       "stock": 38,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1327.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1327.png",
+      "code": "908",
+      "isFastMoving": false
     },
     {
       "id": "aniva_mango_whey_drink__140_ml",
@@ -3425,7 +3847,9 @@
       "unit": "140 ml",
       "taxRate": 5,
       "stock": 30,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1347.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1347.png",
+      "code": "801",
+      "isFastMoving": false
     },
     {
       "id": "aniva_mango_whey_drink_200_ml",
@@ -3441,7 +3865,9 @@
       "unit": "200 ml",
       "taxRate": 5,
       "stock": 33,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1349.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1349.png",
+      "code": "802",
+      "isFastMoving": false
     },
     {
       "id": "aniva_orange_whey_drink_140_ml",
@@ -3457,7 +3883,9 @@
       "unit": "140 ml",
       "taxRate": 5,
       "stock": 36,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1344.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1344.png",
+      "code": "803",
+      "isFastMoving": false
     },
     {
       "id": "aniva_orange_whey_drink_200_ml",
@@ -3473,7 +3901,9 @@
       "unit": "200 ml",
       "taxRate": 5,
       "stock": 35,
-      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1346.png"
+      "image": "https://hapdaily.com/wp-content/uploads/2025/12/Group-1346.png",
+      "code": "804",
+      "isFastMoving": false
     }
   ],
   "byBrand": {
