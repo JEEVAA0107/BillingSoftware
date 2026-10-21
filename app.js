@@ -125,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderSpeedDial();
   setupQuickCodeInput();
   setupPriceManager();
+  setupGoogleSheetsSync();
   renderCart();
   renderInventory();
   renderReports();
@@ -502,7 +503,6 @@ function renderCatalog() {
           <div class="card-price-block">
             <span class="card-price">₹${p.price}</span>
             <span class="card-unit">${escapeHtml(p.unit)}</span>
-            <button class="card-price-edit-btn" data-id="${p.id}" title="Fix / Change Selling Rate (விலை மாற்றம்)">✏️</button>
           </div>
           <button class="card-add-btn" title="Add to Bill">+</button>
         </div>
@@ -517,18 +517,6 @@ function renderCatalog() {
       const product = STATE.products.find(x => x.id === prodId);
       if (product) {
         addItemToCart(product);
-      }
-    });
-  });
-
-  // Add click handlers for pencil rate edit buttons
-  grid.querySelectorAll('.card-price-edit-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const id = btn.dataset.id;
-      const product = STATE.products.find(x => x.id === id);
-      if (product) {
-        promptProductPriceChange(product);
       }
     });
   });
@@ -667,12 +655,7 @@ function renderCart() {
             <div class="cart-item-title">${escapeHtml(item.product.name)}</div>
             <div class="cart-item-unit"><span class="chip-code-tag">#${item.product.code || item.product.id}</span> ${escapeHtml(item.product.brand)} • ${escapeHtml(item.product.unit)}</div>
           </td>
-          <td class="col-price cart-price-cell">
-            <div style="display: inline-flex; align-items: center; gap: 2px;">
-              <span style="font-size: 11px; color: var(--text-muted); font-weight: 700;">₹</span>
-              <input type="number" step="0.5" class="cart-price-input" value="${item.price}" data-id="${item.product.id}" title="Click to adjust line-item selling price">
-            </div>
-          </td>
+          <td class="col-price cart-price-cell">₹${item.price.toFixed(2)}</td>
           <td class="col-qty">
             <div class="qty-control-group">
               <button class="qty-btn" data-action="dec" data-id="${item.product.id}">-</button>
@@ -707,28 +690,6 @@ function renderCart() {
           const id = input.dataset.id;
           const val = parseInt(input.value) || 1;
           updateItemQty(id, Math.max(1, val));
-        });
-      });
-
-      // Direct in-cart price adjustment
-      tableBody.querySelectorAll('.cart-price-input').forEach(input => {
-        input.addEventListener('change', () => {
-          const id = input.dataset.id;
-          const newPrice = parseFloat(input.value);
-          if (!isNaN(newPrice) && newPrice >= 0) {
-            const item = tab.items.find(i => i.product.id === id);
-            if (item) {
-              item.price = newPrice;
-              item.total = item.qty * item.price;
-              renderCart();
-              updateBillTabsUI();
-            }
-          }
-        });
-        input.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') {
-            input.blur();
-          }
         });
       });
 
@@ -900,6 +861,13 @@ function completeCheckout() {
   STATE.orders.unshift(order);
   saveOrders();
   STATE.lastInvoice = order;
+
+  // Auto-Learn Sales Frequency for Top 15 Frequent Items
+  recordSoldItemsFrequency(order.items);
+  renderSpeedDial();
+
+  // Auto-Sync Order to Google Sheets
+  syncOrderToGoogleSheet(order);
 
   // Sound & Visual Celebration
   audio.chime();
@@ -1098,8 +1066,7 @@ function renderInventory() {
           <td>${escapeHtml(p.category)}</td>
           <td>${escapeHtml(p.unit)}</td>
           <td>
-            <strong>₹${p.price}</strong>
-            <button class="card-price-edit-btn" data-id="${p.id}" title="Fix Rate">✏️</button>
+            <strong style="font-family: var(--font-mono);">₹${p.price.toFixed(2)}</strong>
           </td>
           <td>${p.taxRate}%</td>
           <td><span style="font-weight: 700; font-family: var(--font-mono);">${p.stock}</span></td>
@@ -1125,13 +1092,57 @@ function renderInventory() {
         }
       });
     });
+  }
 
-    tbody.querySelectorAll('.card-price-edit-btn').forEach(btn => {
+  // Populate Mobile Touch Stock Cards View (Optimized for phone <= 1024px)
+  const mobileList = document.getElementById('inventoryMobileList');
+  if (mobileList) {
+    mobileList.innerHTML = list.map(p => {
+      const isLow = p.stock < 15;
+      const isOut = p.stock <= 0;
+      const statusText = isOut ? 'Out of Stock' : (isLow ? `Low (${p.stock})` : `In Stock (${p.stock})`);
+      const statusClass = isOut ? 'out' : (isLow ? 'low' : 'ok');
+
+      return `
+        <div class="stock-mobile-card">
+          <div class="smc-header">
+            <img src="${p.image}" class="smc-thumb" onerror="this.src='https://hapdaily.com/wp-content/uploads/2025/12/HAP-Logo.png'">
+            <div class="smc-info">
+              <div class="smc-name">${escapeHtml(p.name)}</div>
+              <div class="smc-sub">
+                <span class="chip-code-tag">#${p.code}</span>
+                <span>${escapeHtml(p.brand)} • ${escapeHtml(p.unit)}</span>
+                <span class="smc-price">₹${p.price}</span>
+              </div>
+            </div>
+            <div class="smc-status-badge ${statusClass}">${statusText}</div>
+          </div>
+          <div class="smc-footer">
+            <div class="smc-stock-display">
+              <span class="smc-stock-label">Stock:</span>
+              <strong class="smc-stock-num">${p.stock}</strong>
+            </div>
+            <div class="smc-quick-actions">
+              <button class="quick-stock-btn" data-id="${p.id}" data-add="10">+10</button>
+              <button class="quick-stock-btn" data-id="${p.id}" data-add="25">+25</button>
+              <button class="quick-stock-btn" data-id="${p.id}" data-add="50">+50</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    mobileList.querySelectorAll('.quick-stock-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const id = btn.dataset.id;
+        const add = parseInt(btn.dataset.add);
         const prod = STATE.products.find(p => p.id === id);
         if (prod) {
-          promptProductPriceChange(prod);
+          prod.stock += add;
+          saveStockOverrides();
+          renderInventory();
+          renderCatalog();
+          audio.chime();
         }
       });
     });
@@ -1358,20 +1369,116 @@ function renderOrders() {
 }
 
 // ==========================================================================
-// SPEED DIAL (அடிக்கடி விற்கும் பொருட்கள்) & FAST-MOVING ITEMS
+// SPEED DIAL (அடிக்கடி விற்கும் 15 பொருட்கள்) & AUTO-LEARNING FREQUENT ITEMS
 // ==========================================================================
+const FREQUENT_TRACKER_KEY = 'hap_pos_frequent_tracker';
+
+function getFrequentTracker() {
+  try {
+    const raw = localStorage.getItem(FREQUENT_TRACKER_KEY);
+    return raw ? JSON.parse(raw) : initDefaultFrequentTracker();
+  } catch (e) {
+    return initDefaultFrequentTracker();
+  }
+}
+
+function initDefaultFrequentTracker() {
+  // Pre-seed default fast-moving dairy & ice cream products (top 15)
+  const defaultCodes = [
+    { code: '185', weight: 60 }, // Arokya Full Cream 500ml
+    { code: '113', weight: 55 }, // Arokya Standardized 500ml
+    { code: '118', weight: 50 }, // Arokya Toned 500ml
+    { code: '201', weight: 48 }, // Hatsun Curd Pouch 500g
+    { code: '186', weight: 45 }, // Arokya Full Cream 1L
+    { code: '114', weight: 40 }, // Arokya Standardized 1L
+    { code: '202', weight: 36 }, // Hatsun Curd Cup 200g
+    { code: '301', weight: 34 }, // Hatsun Paneer 200g
+    { code: '401', weight: 32 }, // Arun Chocobar
+    { code: '403', weight: 30 }, // Arun Mango Duet
+    { code: '501', weight: 28 }, // Arun Vanilla iCone
+    { code: '502', weight: 26 }, // Arun Butterscotch iCone
+    { code: '210', weight: 24 }, // Hatsun Buttermilk 200ml
+    { code: '312', weight: 22 }, // Hatsun Ghee 500ml
+    { code: '406', weight: 20 }  // Arun Kulfi
+  ];
+  
+  const tracker = {};
+  const todayStr = new Date().toISOString().slice(0, 10);
+  defaultCodes.forEach(item => {
+    tracker[item.code] = {
+      code: item.code,
+      totalCount: item.weight,
+      todayCount: Math.floor(item.weight / 3),
+      todayDate: todayStr
+    };
+  });
+  localStorage.setItem(FREQUENT_TRACKER_KEY, JSON.stringify(tracker));
+  return tracker;
+}
+
+function recordSoldItemsFrequency(cartItems) {
+  const tracker = getFrequentTracker();
+  const todayStr = new Date().toISOString().slice(0, 10);
+
+  cartItems.forEach(item => {
+    const code = item.product.code || item.product.id;
+    if (!tracker[code]) {
+      tracker[code] = {
+        code: code,
+        totalCount: 0,
+        todayCount: 0,
+        todayDate: todayStr
+      };
+    }
+    // Reset today count if it's a new day
+    if (tracker[code].todayDate !== todayStr) {
+      tracker[code].todayCount = 0;
+      tracker[code].todayDate = todayStr;
+    }
+    tracker[code].totalCount += (item.qty || 1);
+    tracker[code].todayCount += (item.qty || 1);
+  });
+
+  localStorage.setItem(FREQUENT_TRACKER_KEY, JSON.stringify(tracker));
+}
+
+function getTopFrequentProducts(limit = 15) {
+  const tracker = getFrequentTracker();
+  const todayStr = new Date().toISOString().slice(0, 10);
+
+  // Map products with their dynamic score
+  const scored = STATE.products.map(p => {
+    const code = p.code || p.id;
+    const entry = tracker[code] || { totalCount: 0, todayCount: 0, todayDate: todayStr };
+    const todaySales = (entry.todayDate === todayStr) ? entry.todayCount : 0;
+    // Score heavily weights today's billing frequency + overall sales + fast moving tag
+    const score = (todaySales * 5) + entry.totalCount + (p.isFastMoving ? 10 : 0);
+    return {
+      product: p,
+      score: score,
+      todaySales: todaySales,
+      totalSales: entry.totalCount
+    };
+  });
+
+  // Sort descending by score
+  scored.sort((a, b) => b.score - a.score);
+
+  return scored.slice(0, limit);
+}
+
 function renderSpeedDial() {
   const container = document.getElementById('speedDialContainer');
   if (!container) return;
 
-  const fastItems = STATE.products.filter(p => p.isFastMoving);
-  const displayItems = fastItems.length > 0 ? fastItems : STATE.products.slice(0, 16);
+  const topItems = getTopFrequentProducts(15);
 
-  container.innerHTML = displayItems.map(p => `
-    <button class="speed-chip" data-id="${p.id}" title="1-Tap Add #${p.code} ${escapeHtml(p.name)}">
+  container.innerHTML = topItems.map(({ product: p, todaySales }, idx) => `
+    <button class="speed-chip ${idx < 3 ? 'top-seller' : ''}" data-id="${p.id}" title="Tap to Add #${p.code} ${escapeHtml(p.name)}">
       <span class="chip-code-tag">#${p.code}</span>
       <span class="chip-name">${escapeHtml(p.name)}</span>
       <span class="chip-price">₹${p.price}</span>
+      ${todaySales > 0 ? `<span class="chip-hot-badge">🔥 ${todaySales} sold</span>` : ''}
     </button>
   `).join('');
 
@@ -1466,46 +1573,23 @@ function setupQuickCodeInput() {
 }
 
 // ==========================================================================
-// PRODUCT RATE FIXER (விலை நிர்ணயம் & மாற்றம்)
-// ==========================================================================
 function promptProductPriceChange(product) {
-  const currentPrice = product.price;
-  const input = prompt(
-    `💰 Fix / Change Rate for Product:\n\n[#${product.code}] ${product.name}\nBrand: ${product.brand} • Unit: ${product.unit}\n\nCurrent Selling Rate: ₹${currentPrice}\n\nEnter New Rate (₹):`,
-    currentPrice
-  );
-
-  if (input !== null) {
-    const newPrice = parseFloat(input.trim());
-    if (!isNaN(newPrice) && newPrice >= 0) {
-      product.price = newPrice;
-      product.mrp = newPrice;
-      savePriceOverrides();
-
-      // Update in active carts if item exists
-      STATE.tabs.forEach(tab => {
-        const cartItem = tab.items.find(i => i.product.id === product.id);
-        if (cartItem) {
-          cartItem.price = newPrice;
-          cartItem.total = cartItem.qty * cartItem.price;
-        }
-      });
-
-      renderCatalog();
-      renderSpeedDial();
-      renderCart();
-      renderInventory();
-      audio.beep();
-    } else {
-      alert('Please enter a valid positive number for rate.');
-    }
+  // Price changes only allowed through Fix Rates modal
+  const modal = document.getElementById('priceManagerModal');
+  const searchInput = document.getElementById('priceManagerSearch');
+  if (searchInput && product) {
+    searchInput.value = product.code || product.name;
   }
+  renderPriceManagerTable();
+  modal?.classList.add('open');
+  searchInput?.focus();
 }
 
 function setupPriceManager() {
   const modal = document.getElementById('priceManagerModal');
   const openBtn = document.getElementById('openPriceManagerBtn');
   const headerBtn = document.getElementById('headerPriceManagerBtn');
+  const invBtn = document.getElementById('inventoryPriceManagerBtn');
   const closeBtn = document.getElementById('closePriceManagerBtn');
   const closeBtn2 = document.getElementById('closePriceManagerBtn2');
   const searchInput = document.getElementById('priceManagerSearch');
@@ -1525,6 +1609,7 @@ function setupPriceManager() {
 
   openBtn?.addEventListener('click', openModal);
   headerBtn?.addEventListener('click', openModal);
+  invBtn?.addEventListener('click', openModal);
   closeBtn?.addEventListener('click', closeModal);
   closeBtn2?.addEventListener('click', closeModal);
 
@@ -1674,6 +1759,353 @@ function renderPriceManagerTable() {
 }
 
 // ==========================================================================
+// GOOGLE SHEETS LIVE SYNC SYSTEM (கூகுள் ஷீட் நேரடி இணைப்பு)
+// ==========================================================================
+const GOOGLE_SHEET_URL_KEY = 'hap_pos_google_sheet_url';
+const GOOGLE_SHEET_AUTOSYNC_KEY = 'hap_pos_google_sheet_autosync';
+const PENDING_SHEET_SYNCS_KEY = 'hap_pos_pending_sheet_syncs';
+
+const APPS_SCRIPT_SAMPLE_CODE = `// =============================================================================
+// HAP DAILY POS - GOOGLE APPS SCRIPT WEBHOOK RECEIVER
+// Paste this in Google Sheets > Extensions > Apps Script and Deploy as Web App
+// =============================================================================
+
+function doPost(e) {
+  var lock = LockService.getScriptLock();
+  lock.tryLock(10000);
+  
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var data = JSON.parse(e.postData.contents);
+    
+    // Test Ping Action
+    if (data.action === 'ping') {
+      return ContentService.createTextOutput(JSON.stringify({ status: 'connected', store: data.storeName || 'HAP Daily' }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    // 1. BILLS SUMMARY SHEET
+    var billsSheet = ss.getSheetByName('Bills_Log');
+    if (!billsSheet) {
+      billsSheet = ss.insertSheet('Bills_Log');
+      var headerRow = ['Date', 'Time', 'Bill No', 'Customer Mobile', 'Customer Name', 'Total Items', 'Subtotal (₹)', 'GST (₹)', 'Grand Total (₹)', 'Payment Mode', 'Cashier', 'Items Summary'];
+      billsSheet.appendRow(headerRow);
+      billsSheet.getRange(1, 1, 1, headerRow.length).setFontWeight('bold').setBackground('#E5232A').setFontColor('#FFFFFF');
+      billsSheet.setFrozenRows(1);
+    }
+    
+    billsSheet.appendRow([
+      data.dateStr || new Date().toLocaleDateString(),
+      data.timeStr || new Date().toLocaleTimeString(),
+      data.invoiceNo || 'N/A',
+      data.customerPhone || 'Walk-in',
+      data.customerName || 'Customer',
+      data.totalQty || 0,
+      data.taxableAmount || 0,
+      data.gstAmount || 0,
+      data.grandTotal || 0,
+      data.paymentMethod || 'CASH',
+      data.cashierName || 'Cashier',
+      data.itemsSummary || ''
+    ]);
+    
+    // 2. DETAILED ITEMS SOLD SHEET
+    var itemsSheet = ss.getSheetByName('Items_Sold_Log');
+    if (!itemsSheet) {
+      itemsSheet = ss.insertSheet('Items_Sold_Log');
+      var itemHeaderRow = ['Date', 'Bill No', 'Code', 'Product Name', 'Brand', 'Category', 'Unit', 'Qty Sold', 'Price (₹)', 'Item Total (₹)'];
+      itemsSheet.appendRow(itemHeaderRow);
+      itemsSheet.getRange(1, 1, 1, itemHeaderRow.length).setFontWeight('bold').setBackground('#0F172A').setFontColor('#FFFFFF');
+      itemsSheet.setFrozenRows(1);
+    }
+    
+    if (data.items && data.items.length > 0) {
+      for (var i = 0; i < data.items.length; i++) {
+        var it = data.items[i];
+        itemsSheet.appendRow([
+          data.dateStr || new Date().toLocaleDateString(),
+          data.invoiceNo || 'N/A',
+          it.code || '',
+          it.name || '',
+          it.brand || '',
+          it.category || '',
+          it.unit || '',
+          it.qty || 1,
+          it.price || 0,
+          it.total || 0
+        ]);
+      }
+    }
+    
+    return ContentService.createTextOutput(JSON.stringify({ status: 'success', invoiceNo: data.invoiceNo }))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({ status: 'error', message: err.toString() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function doGet(e) {
+  return ContentService.createTextOutput(JSON.stringify({ status: 'active', message: 'HAP Daily POS Google Sheets Webhook is Live & Ready!' }))
+    .setMimeType(ContentService.MimeType.JSON);
+}`;
+
+function getPendingSheetSyncs() {
+  try {
+    const raw = localStorage.getItem(PENDING_SHEET_SYNCS_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function savePendingSheetSyncs(list) {
+  localStorage.setItem(PENDING_SHEET_SYNCS_KEY, JSON.stringify(list));
+  updateSheetSyncUI();
+}
+
+function setupGoogleSheetsSync() {
+  const modal = document.getElementById('googleSheetsModal');
+  const urlInput = document.getElementById('googleSheetUrlInput');
+  const autoSyncCheckbox = document.getElementById('autoSyncSheetCheckbox');
+  const saveUrlBtn = document.getElementById('saveGoogleSheetUrlBtn');
+  const testConnBtn = document.getElementById('testSheetConnectionBtn');
+  const syncPendingBtn = document.getElementById('syncPendingBillsBtn');
+  const copyScriptBtn = document.getElementById('copyAppsScriptCodeBtn');
+  const copyBadge = document.getElementById('copyScriptSuccessBadge');
+  const closeBtn = document.getElementById('closeGoogleSheetsModalBtn');
+  const closeBtn2 = document.getElementById('closeGoogleSheetsModalBtn2');
+  const headerBtn = document.getElementById('headerGoogleSheetBtn');
+  const mobNavSheet = document.getElementById('mobNavSheet');
+
+  // Load saved preferences
+  const savedUrl = localStorage.getItem(GOOGLE_SHEET_URL_KEY) || '';
+  const savedAuto = localStorage.getItem(GOOGLE_SHEET_AUTOSYNC_KEY) !== 'false';
+  if (urlInput) urlInput.value = savedUrl;
+  if (autoSyncCheckbox) autoSyncCheckbox.checked = savedAuto;
+
+  function openModal() {
+    updateSheetSyncUI();
+    modal?.classList.add('open');
+  }
+
+  function closeModal() {
+    modal?.classList.remove('open');
+  }
+
+  headerBtn?.addEventListener('click', openModal);
+  mobNavSheet?.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+  closeBtn2?.addEventListener('click', closeModal);
+
+  saveUrlBtn?.addEventListener('click', () => {
+    const val = (urlInput?.value || '').trim();
+    if (!val) {
+      localStorage.removeItem(GOOGLE_SHEET_URL_KEY);
+      alert('Google Sheet URL cleared.');
+      updateSheetSyncUI();
+      return;
+    }
+    if (!val.startsWith('https://script.google.com/macros/s/')) {
+      alert('⚠️ Please enter a valid Google Apps Script Web App URL starting with:\nhttps://script.google.com/macros/s/...');
+      return;
+    }
+    localStorage.setItem(GOOGLE_SHEET_URL_KEY, val);
+    alert('✅ Google Sheet URL saved! Testing connection now...');
+    testGoogleSheetConnection(val);
+  });
+
+  autoSyncCheckbox?.addEventListener('change', () => {
+    localStorage.setItem(GOOGLE_SHEET_AUTOSYNC_KEY, autoSyncCheckbox.checked ? 'true' : 'false');
+  });
+
+  testConnBtn?.addEventListener('click', () => {
+    const url = (urlInput?.value || '').trim() || localStorage.getItem(GOOGLE_SHEET_URL_KEY);
+    if (!url) {
+      alert('Please enter your Google Apps Script URL first.');
+      urlInput?.focus();
+      return;
+    }
+    testGoogleSheetConnection(url);
+  });
+
+  syncPendingBtn?.addEventListener('click', flushPendingSheetSyncs);
+
+  copyScriptBtn?.addEventListener('click', () => {
+    navigator.clipboard.writeText(APPS_SCRIPT_SAMPLE_CODE).then(() => {
+      if (copyBadge) {
+        copyBadge.style.display = 'inline-block';
+        setTimeout(() => { copyBadge.style.display = 'none'; }, 2500);
+      }
+      audio.chime();
+    }).catch(() => {
+      alert('Could not auto-copy. Please select and copy the code manually.');
+    });
+  });
+
+  // Listen for online event to automatically sync pending bills
+  window.addEventListener('online', () => {
+    console.log('Online detected. Flushing pending Google Sheet syncs...');
+    flushPendingSheetSyncs();
+  });
+
+  updateSheetSyncUI();
+}
+
+function updateSheetSyncUI() {
+  const url = localStorage.getItem(GOOGLE_SHEET_URL_KEY);
+  const pending = getPendingSheetSyncs();
+  const isConnected = !!url;
+
+  // Header dot & text
+  const headerDot = document.getElementById('headerSheetDot');
+  const headerText = document.getElementById('headerSheetBtnText');
+  const mobDot = document.getElementById('mobSheetDot');
+
+  if (headerDot) {
+    headerDot.className = isConnected ? 'sheet-status-dot-sm connected' : 'sheet-status-dot-sm';
+  }
+  if (headerText) {
+    headerText.textContent = isConnected ? (pending.length > 0 ? `Sheet (${pending.length})` : 'Sheet Synced') : 'Sheet Sync';
+  }
+  if (mobDot) {
+    mobDot.className = isConnected ? 'mob-sheet-dot connected' : 'mob-sheet-dot';
+  }
+
+  // Modal elements
+  const statusDot = document.getElementById('sheetStatusDot');
+  const statusText = document.getElementById('sheetStatusText');
+  const statusSub = document.getElementById('sheetStatusSub');
+  const pendingCountEl = document.getElementById('pendingBillsCount');
+
+  if (statusDot) {
+    statusDot.className = isConnected ? 'sheet-status-dot connected' : 'sheet-status-dot';
+  }
+  if (statusText) {
+    statusText.textContent = isConnected ? 'Connected to Google Sheet' : 'Not Connected';
+  }
+  if (statusSub) {
+    statusSub.textContent = isConnected 
+      ? (pending.length > 0 ? `Active • ${pending.length} bill(s) pending sync` : 'Active • All bills will be saved to your Google Sheet in real-time') 
+      : 'Paste your Google Apps Script URL below to auto-sync bills in real-time.';
+  }
+  if (pendingCountEl) {
+    pendingCountEl.textContent = pending.length;
+  }
+}
+
+async function testGoogleSheetConnection(url) {
+  const statusText = document.getElementById('sheetStatusText');
+  if (statusText) statusText.textContent = 'Testing connection...';
+
+  const testPayload = {
+    action: 'ping',
+    storeName: STATE.settings.storeName,
+    timestamp: new Date().toISOString()
+  };
+
+  try {
+    await fetch(url, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(testPayload)
+    });
+
+    audio.chime();
+    alert('✅ Successfully connected to Google Sheet!\n\nYour bills will now be automatically logged in real-time.');
+    updateSheetSyncUI();
+  } catch (err) {
+    alert(`⚠️ Could not reach Google Sheet.\nPlease check your Web App URL and ensure "Who has access" is set to "Anyone".\nError: ${err.message}`);
+    updateSheetSyncUI();
+  }
+}
+
+async function syncOrderToGoogleSheet(order) {
+  const url = localStorage.getItem(GOOGLE_SHEET_URL_KEY);
+  const autoSync = localStorage.getItem(GOOGLE_SHEET_AUTOSYNC_KEY) !== 'false';
+  
+  if (!url || !autoSync) return;
+
+  const payload = {
+    action: 'add_bill',
+    invoiceNo: order.invoiceNo,
+    timestamp: order.timestamp,
+    dateStr: order.dateStr,
+    timeStr: order.timeStr,
+    customerPhone: order.customer.phone || 'Walk-in',
+    customerName: order.customer.name || 'Walk-in Customer',
+    itemsSummary: order.items.map(i => `${i.product.name} (${i.product.code}) x${i.qty}`).join(', '),
+    totalQty: order.items.reduce((s, i) => s + i.qty, 0),
+    taxableAmount: order.taxableAmount,
+    gstAmount: order.gstAmount,
+    roundOff: order.roundOff,
+    grandTotal: order.grandTotal,
+    paymentMethod: order.paymentMethod,
+    cashierName: STATE.settings.cashierName || 'Jeeva M.',
+    items: order.items.map(i => ({
+      code: i.product.code,
+      name: i.product.name,
+      brand: i.product.brand,
+      category: i.product.category,
+      unit: i.product.unit,
+      qty: i.qty,
+      price: i.price,
+      total: i.total
+    }))
+  };
+
+  try {
+    await fetch(url, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    console.log(`[GoogleSheetSync] Order ${order.invoiceNo} successfully synced!`);
+  } catch (err) {
+    console.warn(`[GoogleSheetSync] Sync failed, queued locally: ${err.message}`);
+    const pending = getPendingSheetSyncs();
+    pending.push(payload);
+    savePendingSheetSyncs(pending);
+  }
+}
+
+async function flushPendingSheetSyncs() {
+  const url = localStorage.getItem(GOOGLE_SHEET_URL_KEY);
+  if (!url) return;
+
+  const pending = getPendingSheetSyncs();
+  if (pending.length === 0) {
+    alert('No pending bills to sync.');
+    return;
+  }
+
+  let successCount = 0;
+  const remaining = [];
+
+  for (const item of pending) {
+    try {
+      await fetch(url, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(item)
+      });
+      successCount++;
+    } catch (e) {
+      remaining.push(item);
+    }
+  }
+
+  savePendingSheetSyncs(remaining);
+  alert(`✅ Synced ${successCount} pending bill(s) to Google Sheet!${remaining.length > 0 ? ` (${remaining.length} still offline)` : ''}`);
+}
+
+// ==========================================================================
 // EVENT LISTENERS & HOTKEYS
 // ==========================================================================
 function setupEventListeners() {
@@ -1695,7 +2127,15 @@ function setupEventListeners() {
   });
 
   document.querySelectorAll('#mobileBottomNav .mobile-nav-btn').forEach(btn => {
-    btn.addEventListener('click', () => switchView(btn.dataset.view));
+    btn.addEventListener('click', () => {
+      if (btn.dataset.view) {
+        switchView(btn.dataset.view);
+      }
+    });
+  });
+
+  document.getElementById('mobNavFixRates')?.addEventListener('click', () => {
+    document.getElementById('headerPriceManagerBtn')?.click();
   });
 
   // Mobile POS Segment Switcher (Catalog vs Cart)

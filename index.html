@@ -74,6 +74,13 @@
         </div>
       </div>
 
+      <!-- Google Sheets Live Sync Status Button -->
+      <button class="nav-sheet-btn" id="headerGoogleSheetBtn" title="Google Sheets Auto-Sync (கூகுள் ஷீட் இணைப்பு)">
+        <span class="sheet-status-dot-sm" id="headerSheetDot"></span>
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+        <span class="sheet-btn-text" id="headerSheetBtnText">Sheet Sync</span>
+      </button>
+
       <button class="nav-rate-btn" id="headerPriceManagerBtn" title="Product Rate Fixer (விலை மாற்றம்)">
         <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         <span>Fix Rates</span>
@@ -122,7 +129,7 @@
           <div class="catalog-search-row">
             <div class="quick-code-wrapper">
               <span class="code-hash-icon">#</span>
-              <input type="text" id="quickCodeInput" placeholder="Item Code (e.g. 105, 201) or 105*2 + Enter..." autocomplete="off">
+              <input type="text" id="quickCodeInput" inputmode="numeric" placeholder="Item Code (e.g. 185, 201) or 185*2 + Enter..." autocomplete="off">
               <button class="code-add-btn" id="quickCodeAddBtn" title="Add item by Code">Add</button>
             </div>
 
@@ -138,11 +145,14 @@
             </button>
           </div>
 
-          <!-- Fast-Moving Speed Dial (Sleek single-line horizontal bar) -->
+          <!-- Fast-Moving Dynamic Frequent Items (Auto-Learned Top 15 Products) -->
           <div class="speed-dial-section">
-            <span class="speed-badge">⚡ TOP SELLERS</span>
+            <div class="speed-dial-header-row">
+              <span class="speed-badge">⚡ TOP 15 FREQUENT (அடிக்கடி விற்கும் பொருட்கள்)</span>
+              <span class="speed-sub-badge">Auto-Learned</span>
+            </div>
             <div class="speed-dial-chips-scroller" id="speedDialContainer">
-              <!-- Populated via JS -->
+              <!-- Dynamically populated via JS -->
             </div>
           </div>
 
@@ -156,7 +166,6 @@
                 <option value="all">All Categories</option>
               </select>
             </div>
-            <div class="category-pills-scroller" id="categoryPillsContainer" style="display: none;"></div>
             <div class="catalog-view-options">
               <label class="stock-filter-toggle">
                 <input type="checkbox" id="hideOutOfStockCheckbox">
@@ -331,6 +340,10 @@
             <p class="view-subtitle">Live real-time stock levels for all official Hatsun, Arun, Arokya & HAP items</p>
           </div>
           <div class="view-header-actions">
+            <button class="btn btn-warning" id="inventoryPriceManagerBtn" title="Product Rate Fixer (விலை நிர்ணயம் & மாற்றம்)">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <span>Fix Rates</span>
+            </button>
             <button class="btn btn-primary" id="openAddProductModalBtn">
               <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
               <span>Add Custom Product</span>
@@ -393,8 +406,8 @@
           </div>
         </div>
 
-        <!-- Inventory Table -->
-        <div class="table-container">
+        <!-- Inventory Table (Desktop/Tablet) -->
+        <div class="table-container inventory-desktop-table">
           <table class="data-table" id="inventoryTable">
             <thead>
               <tr>
@@ -415,6 +428,11 @@
               <!-- Populated via JS -->
             </tbody>
           </table>
+        </div>
+
+        <!-- Mobile Touch Stock Cards View (Optimized for phone <= 1024px) -->
+        <div class="inventory-mobile-list" id="inventoryMobileList">
+          <!-- Populated via JS with touch-friendly restock cards -->
         </div>
 
       </div>
@@ -599,13 +617,20 @@
       </div>
       <span>Stock</span>
     </button>
-    <button class="mobile-nav-btn" data-view="reportsView" id="mobNavReports">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-      <span>Reports</span>
-    </button>
     <button class="mobile-nav-btn" data-view="ordersView" id="mobNavOrders">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
-      <span>Invoices</span>
+      <span>Bills</span>
+    </button>
+    <button class="mobile-nav-btn" id="mobNavSheet">
+      <div class="mob-icon-wrap">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+        <span class="mob-sheet-dot" id="mobSheetDot"></span>
+      </div>
+      <span>Sheet</span>
+    </button>
+    <button class="mobile-nav-btn" id="mobNavFixRates">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      <span>Fix Rates</span>
     </button>
   </nav>
 
@@ -1005,6 +1030,88 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" id="closeCodeGuideBtn2">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. GOOGLE SHEETS LIVE SYNC MODAL (கூகுள் ஷீட் நேரடி இணைப்பு) -->
+  <div class="modal-backdrop" id="googleSheetsModal">
+    <div class="modal-window sheet-modal-window">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <div class="sheet-icon-circle">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <div>
+            <h3 class="modal-title">📊 Google Sheets Live Sync</h3>
+            <p class="modal-subtitle">Sync sales bills & stock automatically to your Google Spreadsheet</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="closeGoogleSheetsModalBtn">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Live Connection Status Card -->
+        <div class="sheet-status-card" id="sheetStatusCard">
+          <div class="sheet-status-left">
+            <span class="sheet-status-dot" id="sheetStatusDot"></span>
+            <div>
+              <strong id="sheetStatusText">Not Connected</strong>
+              <div class="sheet-status-sub" id="sheetStatusSub">Paste your Google Apps Script URL below to auto-sync bills in real-time.</div>
+            </div>
+          </div>
+          <button class="btn btn-sm btn-secondary" id="testSheetConnectionBtn">Test Connection</button>
+        </div>
+
+        <!-- Webhook URL Configuration -->
+        <div class="form-group" style="margin-top: 14px;">
+          <label class="form-label" for="googleSheetUrlInput">
+            <span>Google Apps Script Web App URL:</span>
+            <span class="required-star">*</span>
+          </label>
+          <div class="input-with-action">
+            <input type="url" id="googleSheetUrlInput" class="form-input" placeholder="https://script.google.com/macros/s/AKfycb.../exec" autocomplete="off">
+            <button class="btn btn-primary btn-sm" id="saveGoogleSheetUrlBtn">Save URL</button>
+          </div>
+          <span class="form-hint">Paste the deployed Web App URL from your Google Spreadsheet Apps Script</span>
+        </div>
+
+        <!-- Auto Sync & Pending Queue Controls -->
+        <div class="sheet-controls-grid">
+          <label class="sheet-toggle-label">
+            <input type="checkbox" id="autoSyncSheetCheckbox" checked>
+            <span>Auto-sync every bill immediately upon Checkout</span>
+          </label>
+          <button class="btn btn-secondary btn-sm" id="syncPendingBillsBtn">
+            <span>🔄 Sync Pending (<span id="pendingBillsCount">0</span>)</span>
+          </button>
+        </div>
+
+        <!-- 1-Minute Setup Guide Box -->
+        <div class="sheet-setup-box">
+          <div class="setup-box-header">
+            <strong>📋 1-Minute Setup Guide (1 நிமிடத்தில் இணைப்பது எப்படி?)</strong>
+          </div>
+          <ol class="setup-steps-list">
+            <li>Open a new spreadsheet at <a href="https://sheets.new" target="_blank" rel="noopener"><strong>sheets.new</strong></a> (Free Google Sheet).</li>
+            <li>In the Google Sheet menu, click <strong>Extensions &gt; Apps Script</strong>.</li>
+            <li>Click the button below to copy the ready-made script, paste it replacing all code in Apps Script, and click Save (💾):
+              <div style="margin: 8px 0; display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                <button class="btn btn-sm btn-dark" id="copyAppsScriptCodeBtn" type="button">
+                  <span>📋 Copy Ready-Made Apps Script Code</span>
+                </button>
+                <span class="copy-success-badge" id="copyScriptSuccessBadge" style="display: none;">✓ Copied to Clipboard!</span>
+              </div>
+            </li>
+            <li>In Apps Script, click <strong>Deploy &gt; New deployment</strong>, select type <strong>Web app</strong>.</li>
+            <li>Set <em>Execute as:</em> <strong>Me</strong> and <em>Who has access:</em> <strong>Anyone</strong>, then click <strong>Deploy</strong>.</li>
+            <li>Copy the <strong>Web app URL</strong>, paste it into the box above, and click <strong>Save URL</strong>!</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="closeGoogleSheetsModalBtn2">Close</button>
       </div>
     </div>
   </div>
